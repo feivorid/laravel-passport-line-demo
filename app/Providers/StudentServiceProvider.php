@@ -11,28 +11,10 @@ use League\OAuth2\Server\Grant\PasswordGrant;
 
 class StudentServiceProvider extends PassportServiceProvider
 {
-    /**
-     * Bootstrap the application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-    }
-
-    /**
-     * Register the application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
 
     protected function makePasswordGrant()
     {
+        dd(1231212312);
         $grant = new PasswordGrant(
             $this->app->make(StudentService::class),
             $this->app->make(RefreshTokenRepository::class)

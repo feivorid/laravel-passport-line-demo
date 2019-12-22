@@ -2,16 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Student extends Model
+class Student extends Authenticatable
 {
+    use HasApiTokens;
 
     protected $guarded = ['id'];
     protected $hidden = ['password'];
+    protected $primaryKey = 'id';
+
 
     public function teachers()
     {
         return $this->hasMany(StudentFollowTeacher::class, 'student_id');
+    }
+
+    public function findForPassport($username)
+    {
+        return $this->where('email', $username)->first();
     }
 }

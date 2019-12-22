@@ -15,8 +15,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $student = auth('student_api')->user();
-        dd($student);
+        $student = auth('student')->user();
         if (!$student) {
             return response()->json(['message' => '未登录'], 401);
         }
