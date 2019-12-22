@@ -14,7 +14,6 @@ class StudentServiceProvider extends PassportServiceProvider
 
     protected function makePasswordGrant()
     {
-        dd(1231212312);
         $grant = new PasswordGrant(
             $this->app->make(StudentService::class),
             $this->app->make(RefreshTokenRepository::class)
