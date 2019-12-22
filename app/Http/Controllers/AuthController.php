@@ -6,7 +6,7 @@ use App\Models\Student;
 use App\Models\Teacher;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -124,9 +124,19 @@ class AuthController extends Controller
         $data['password'] = bcrypt($data['password']);
         unset($data['type']);
 
-        if ($type = 'student') {
+        if ($request->get('type') == 'student') {
+            if (Student::query()->where('email', $request->get('email'))->exists()) {
+                return response()->json([
+                    'message' => '邮箱已被注册，请换一个邮箱',
+                ]);
+            }
             Student::query()->create($data);
         } else {
+            if (Teacher::query()->where('email', $request->get('email'))->exists()) {
+                return response()->json([
+                    'message' => '邮箱已被注册，请换一个邮箱',
+                ]);
+            }
             Teacher::query()->create($data);
         }
 
