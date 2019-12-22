@@ -19,10 +19,13 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'username' => 'required',
+            'email'    => 'required',
+            'password' => 'required',
             'type'     => 'required', //student teacher
         ], [
-            'username.required' => '请输入邮箱',
+            'email.required'    => '请输入邮箱',
+            'password.required' => '请输入密码',
+            'type.required'     => '请选择类型',
         ]);
 
         if ($validator->fails()) {
@@ -31,7 +34,7 @@ class AuthController extends Controller
             ], 400);
         }
 
-        $username = $request->get('username');
+        $username = $request->get('email');
         $type = $request->get('type', 'student');
 
         if ($type == 'student') {
@@ -56,7 +59,7 @@ class AuthController extends Controller
 
         try {
             $request = $client->request('POST', config('app.url') . '/oauth/token', [
-                'form_params' => config('passport') + $request->only(array_keys($request->rules())) + ['guard' => $type],
+                'form_params' => config('passport') + $request->only(['email', 'password']) + ['guard' => $type],
             ]);
         } catch (\RuntimeException $e) {
             return response()->json([
