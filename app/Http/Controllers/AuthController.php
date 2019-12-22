@@ -6,6 +6,7 @@ use App\Models\Student;
 use App\Models\Teacher;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -60,15 +61,15 @@ class AuthController extends Controller
         $request = $client->request('POST', request()->root() . '/oauth/token', [
             'form_params' => config('passport') + $request->only(['email', 'password']) + ['guard' => $type],
         ]);
-//        try {
-//            $request = $client->request('POST', config('app.url') . '/oauth/token', [
-//                'form_params' => config('passport') + $request->only(['email', 'password']) + ['guard' => $type],
-//            ]);
-//        } catch (\RuntimeException $e) {
-//            return response()->json([
-//                'message' => '账号或密码错误',
-//            ], 401);
-//        }
+        //        try {
+        //            $request = $client->request('POST', config('app.url') . '/oauth/token', [
+        //                'form_params' => config('passport') + $request->only(['email', 'password']) + ['guard' => $type],
+        //            ]);
+        //        } catch (\RuntimeException $e) {
+        //            return response()->json([
+        //                'message' => '账号或密码错误',
+        //            ], 401);
+        //        }
 
         if ($request->getStatusCode() == '401') {
             return response()->json([
@@ -104,6 +105,7 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
+        dd(DB::table('oauth_clients')->get()->toArray());
         $validator = Validator::make($request->all(), [
             'email'    => 'required',
             'password' => 'required',
