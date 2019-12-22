@@ -18,8 +18,8 @@ class Teacher extends Authenticatable
         return $this->hasMany(StudentFollowTeacher::class, 'teacher_id');
     }
 
-    public function findForPassport($username)
-    {
-        return $this->where('email', $username)->first();
-    }
+//    public function findForPassport($username)
+//    {
+//        return $this->where('email', $username)->first();
+//    }
 }

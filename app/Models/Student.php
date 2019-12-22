@@ -18,9 +18,4 @@ class Student extends Authenticatable
     {
         return $this->hasMany(StudentFollowTeacher::class, 'student_id');
     }
-
-    public function findForPassport($username)
-    {
-        return $this->where('email', $username)->first();
-    }
 }
