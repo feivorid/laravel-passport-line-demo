@@ -57,7 +57,7 @@ class AuthController extends Controller
 
         $client = new Client();
 
-        $request = $client->request('POST', config('app.url') . '/oauth/token', [
+        $request = $client->request('POST', request()->root() . '/oauth/token', [
             'form_params' => config('passport') + $request->only(['email', 'password']) + ['guard' => $type],
         ]);
 //        try {
