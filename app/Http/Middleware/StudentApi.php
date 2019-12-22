@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
-class PassportApi
+class StudentApi
 {
 
     /**
@@ -17,13 +17,8 @@ class PassportApi
      */
     public function handle($request, Closure $next)
     {
-        $guard = $request->get('guard');
-
-        if (!$guard) {
-            throw new UnauthorizedHttpException('', 'guard not found');
-        }
-        if (auth($guard)->check()) {
-            auth()->shouldUse($guard);
+        if (auth('teacher')->check()) {
+            auth()->shouldUse('teacher');
             return $next($request);
         }
 
