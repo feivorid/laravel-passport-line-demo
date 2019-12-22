@@ -57,15 +57,18 @@ class AuthController extends Controller
 
         $client = new Client();
 
-        try {
-            $request = $client->request('POST', config('app.url') . '/oauth/token', [
-                'form_params' => config('passport') + $request->only(['email', 'password']) + ['guard' => $type],
-            ]);
-        } catch (\RuntimeException $e) {
-            return response()->json([
-                'message' => '账号或密码错误',
-            ], 401);
-        }
+        $request = $client->request('POST', config('app.url') . '/oauth/token', [
+            'form_params' => config('passport') + $request->only(['email', 'password']) + ['guard' => $type],
+        ]);
+//        try {
+//            $request = $client->request('POST', config('app.url') . '/oauth/token', [
+//                'form_params' => config('passport') + $request->only(['email', 'password']) + ['guard' => $type],
+//            ]);
+//        } catch (\RuntimeException $e) {
+//            return response()->json([
+//                'message' => '账号或密码错误',
+//            ], 401);
+//        }
 
         if ($request->getStatusCode() == '401') {
             return response()->json([
