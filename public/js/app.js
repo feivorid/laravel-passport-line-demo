@@ -47587,6 +47587,15 @@ if (inBrowser && window.Vue) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api__ = __webpack_require__(71);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
 //
 //
 //
@@ -47641,9 +47650,110 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-	mounted: function mounted() {
-		console.log(12312123);
+	mounted: function mounted() {},
+
+
+	data: function data() {
+		return {
+			type: 'teacher',
+			email: '',
+			password: '',
+			name: ''
+		};
+	},
+
+	methods: {
+		register: function () {
+			var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+				var result;
+				return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+					while (1) {
+						switch (_context.prev = _context.next) {
+							case 0:
+								if (this.type) {
+									_context.next = 3;
+									break;
+								}
+
+								alert('请选择类型');
+								return _context.abrupt('return', false);
+
+							case 3:
+								if (this.name) {
+									_context.next = 6;
+									break;
+								}
+
+								alert('请输入姓名');
+								return _context.abrupt('return', false);
+
+							case 6:
+								if (this.email) {
+									_context.next = 9;
+									break;
+								}
+
+								alert('请输入邮箱');
+								return _context.abrupt('return', false);
+
+							case 9:
+								if (this.password) {
+									_context.next = 12;
+									break;
+								}
+
+								alert('请输入密码');
+								return _context.abrupt('return', false);
+
+							case 12:
+								_context.next = 14;
+								return __WEBPACK_IMPORTED_MODULE_1__api__["a" /* default */].register({
+									name: this.name,
+									email: this.email,
+									password: this.password,
+									type: this.type
+								});
+
+							case 14:
+								result = _context.sent;
+
+
+								console.log(result);
+
+								if (!(result.data.code === 200)) {
+									_context.next = 22;
+									break;
+								}
+
+								alert('注册成功');
+								_context.next = 20;
+								return this.$router.push('/login');
+
+							case 20:
+								_context.next = 23;
+								break;
+
+							case 22:
+								alert(result.data.message);
+
+							case 23:
+							case 'end':
+								return _context.stop();
+						}
+					}
+				}, _callee, this);
+			}));
+
+			function register() {
+				return _ref.apply(this, arguments);
+			}
+
+			return register;
+		}()
 	}
 });
 
@@ -47655,177 +47765,234 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
-          _c("div", { staticClass: "panel panel-default" }, [
-            _c("div", { staticClass: "panel-heading" }, [_vm._v("注册")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "panel-body" }, [
-              _c(
-                "form",
-                {
-                  staticClass: "form-horizontal",
-                  attrs: { method: "POST", action: "" }
-                },
-                [
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
+        _c("div", { staticClass: "panel panel-default" }, [
+          _c("div", { staticClass: "panel-heading" }, [_vm._v("注册")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "panel-body" }, [
+            _c("div", { staticClass: "form-horizontal" }, [
+              _c("input", {
+                attrs: { type: "hidden", name: "_token", value: "" }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-md-4 control-label",
+                    attrs: { for: "type" }
+                  },
+                  [_vm._v("用户类型")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.type,
+                          expression: "type"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        name: "type",
+                        required: "required",
+                        autofocus: "autofocus",
+                        id: ""
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.type = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "student" } }, [
+                        _vm._v("学生")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "teacher" } }, [
+                        _vm._v("老师")
+                      ])
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-md-4 control-label",
+                    attrs: { for: "name" }
+                  },
+                  [_vm._v("姓名")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
                   _c("input", {
-                    attrs: { type: "hidden", name: "_token", value: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
+                    directives: [
                       {
-                        staticClass: "col-md-4 control-label",
-                        attrs: { for: "type" }
-                      },
-                      [_vm._v("用户类型")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c(
-                        "select",
-                        {
-                          staticClass: "form-control",
-                          attrs: { name: "type", id: "" }
-                        },
-                        [
-                          _c("option", { attrs: { value: "student" } }, [
-                            _vm._v("学生")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "teacher" } }, [
-                            _vm._v("老师")
-                          ])
-                        ]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-4 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("姓名")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          id: "name",
-                          type: "text",
-                          name: "name",
-                          value: "",
-                          required: "required",
-                          autofocus: "autofocus"
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.name,
+                        expression: "name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "name",
+                      type: "text",
+                      name: "name",
+                      value: "",
+                      required: "required",
+                      autofocus: "autofocus"
+                    },
+                    domProps: { value: _vm.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
                         }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
+                        _vm.name = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-md-4 control-label",
+                    attrs: { for: "email" }
+                  },
+                  [_vm._v("邮箱")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("input", {
+                    directives: [
                       {
-                        staticClass: "col-md-4 control-label",
-                        attrs: { for: "email" }
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.email,
+                        expression: "email"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "email",
+                      type: "email",
+                      name: "email",
+                      value: "",
+                      required: "required"
+                    },
+                    domProps: { value: _vm.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.email = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-md-4 control-label",
+                    attrs: { for: "password" }
+                  },
+                  [_vm._v("密码")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.password,
+                        expression: "password"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "password",
+                      type: "password",
+                      name: "password",
+                      required: "required"
+                    },
+                    domProps: { value: _vm.password },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.password = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-md-6 col-md-offset-4" },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button" },
+                        on: { click: _vm.register }
                       },
-                      [_vm._v("邮箱")]
+                      [_vm._v("\n\t\t\t\t\t\t\t\t\t注册\n\t\t\t\t\t\t\t\t")]
                     ),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          id: "email",
-                          type: "email",
-                          name: "email",
-                          value: "",
-                          required: "required"
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
                     _c(
-                      "label",
+                      "router-link",
                       {
-                        staticClass: "col-md-4 control-label",
-                        attrs: { for: "password" }
+                        staticClass: "btn btn-primary pull-right",
+                        attrs: { to: "/login" }
                       },
-                      [_vm._v("密码")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          id: "password",
-                          type: "password",
-                          name: "password",
-                          required: "required"
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-4 control-label",
-                        attrs: { for: "password-confirm" }
-                      },
-                      [_vm._v("确认密码")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          id: "password-confirm",
-                          type: "password",
-                          name: "password_confirmation",
-                          required: "required"
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-md-6 col-md-offset-4" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-primary",
-                          attrs: { type: "submit" }
-                        },
-                        [_vm._v("\n\t\t\t\t\t\t\t\t\t注册\n\t\t\t\t\t\t\t\t")]
-                      )
-                    ])
-                  ])
-                ]
-              )
+                      [_vm._v("去登录")]
+                    )
+                  ],
+                  1
+                )
+              ])
             ])
           ])
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -48021,7 +48188,7 @@ exports = module.exports = __webpack_require__(50)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -48346,11 +48513,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: "LoginComponent",
+	mounted: function mounted() {
+		if (localStorage.token) {
+			this.$router.push('/');
+		}
+	},
 	data: function data() {
 		return {
 			type: 'teacher',
@@ -48368,30 +48541,48 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 					while (1) {
 						switch (_context.prev = _context.next) {
 							case 0:
-								if (!localStorage.token) {
+								if (this.type) {
 									_context.next = 3;
 									break;
 								}
 
-								_context.next = 3;
-								return this.$router.push('/');
+								alert('请选择类型');
+								return _context.abrupt('return', false);
 
 							case 3:
-								_context.next = 5;
+								if (this.email) {
+									_context.next = 6;
+									break;
+								}
+
+								alert('请输入邮箱');
+								return _context.abrupt('return', false);
+
+							case 6:
+								if (this.password) {
+									_context.next = 9;
+									break;
+								}
+
+								alert('请输入密码');
+								return _context.abrupt('return', false);
+
+							case 9:
+								_context.next = 11;
 								return __WEBPACK_IMPORTED_MODULE_1__api__["a" /* default */].login({
 									type: this.type,
 									email: this.email,
 									password: this.password
 								});
 
-							case 5:
+							case 11:
 								result = _context.sent;
 
 
 								console.log(result);
 
-								if (!(result.status === 200)) {
-									_context.next = 16;
+								if (!(result.data.code === 200)) {
+									_context.next = 22;
 									break;
 								}
 
@@ -48399,17 +48590,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 								localStorage.token = result.data.access_token;
 								localStorage.refresh_token = result.data.refresh_token;
 								console.log(localStorage);
-								_context.next = 14;
+								_context.next = 20;
 								return this.$router.push('/');
 
-							case 14:
-								_context.next = 17;
+							case 20:
+								_context.next = 23;
 								break;
 
-							case 16:
+							case 22:
 								alert(result.data.message);
 
-							case 17:
+							case 23:
 							case 'end':
 								return _context.stop();
 						}
@@ -48581,26 +48772,40 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
-                _c("div", { staticClass: "col-md-6 col-md-offset-4" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "submit" },
-                      on: { click: _vm.login }
-                    },
-                    [_vm._v("登录")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary pull-right",
-                      attrs: { type: "button" }
-                    },
-                    [_vm._v("LINE登录")]
-                  )
-                ])
+                _c(
+                  "div",
+                  { staticClass: "col-md-6 col-md-offset-4" },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "submit" },
+                        on: { click: _vm.login }
+                      },
+                      [_vm._v("登录")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary pull-right",
+                        attrs: { type: "button" }
+                      },
+                      [_vm._v("LINE登录")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "btn btn-primary pull-right",
+                        attrs: { to: "/register" }
+                      },
+                      [_vm._v("去注册")]
+                    )
+                  ],
+                  1
+                )
               ])
             ])
           ])
@@ -48804,17 +49009,15 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 
 
-// const baseUrl = 'http://laravel-passport-demo.test';
-var baseUrl = 'https://laravel-passport-demo.herokuapp.com';
+var baseUrl = 'http://laravel-passport-demo.test';
+// const baseUrl = 'https://laravel-passport-demo.herokuapp.com';
 
 /* harmony default export */ __webpack_exports__["a"] = ({
 	register: function register(params) {
-		console.log(params);
-		return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(baseUrl + '/api/register', {});
+		return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(baseUrl + '/api/register', params);
 	},
 
 	login: function login(params) {
-		console.log(params);
 		return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(baseUrl + '/oauth/token', {
 			username: params.email,
 			type: params.type,

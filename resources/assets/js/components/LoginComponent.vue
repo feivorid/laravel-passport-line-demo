@@ -34,6 +34,7 @@
 								<div class="col-md-6 col-md-offset-4">
 									<button type="submit" class="btn btn-primary" @click="login">登录</button>
 									<button type="button" class="btn btn-primary pull-right">LINE登录</button>
+									<router-link class="btn btn-primary pull-right" to="/register">去注册</router-link>
 								</div>
 							</div>
 						</div>
@@ -49,6 +50,11 @@
 
 	export default {
 		name: "LoginComponent",
+		mounted() {
+			if (localStorage.token) {
+				this.$router.push('/');
+			}
+		},
 		data() {
 			return {
 				type: 'teacher',
@@ -59,8 +65,17 @@
 
 		methods: {
 			async login() {
-				if (localStorage.token) {
-					await this.$router.push('/');
+				if (!this.type) {
+					alert('请选择类型');
+					return false;
+				}
+				if (!this.email) {
+					alert('请输入邮箱');
+					return false;
+				}
+				if (!this.password) {
+					alert('请输入密码');
+					return false;
 				}
 
 				let result = await Api.login({
@@ -70,7 +85,7 @@
 				});
 
 				console.log(result);
-				if (result.status === 200) {
+				if (result.data.code === 200) {
 					console.log(result);
 					localStorage.token = result.data.access_token;
 					localStorage.refresh_token = result.data.refresh_token;

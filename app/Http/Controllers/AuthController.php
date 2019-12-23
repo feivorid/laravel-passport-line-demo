@@ -31,8 +31,9 @@ class AuthController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
+                'code'    => 400,
                 'message' => $validator->errors()->first(),
-            ], 400);
+            ]);
         }
 
         $username = $request->get('email');
@@ -46,14 +47,16 @@ class AuthController extends Controller
 
         if (!$user) {
             return response()->json([
+                'code'    => 401,
                 'message' => '账号或密码错误',
-            ], '401');
+            ]);
         }
 
         if ($user && $user->enabled == 0) {
             return response()->json([
+                'code'    => 401,
                 'message' => '您的账号已被禁用,无法登录',
-            ], '401');
+            ]);
         }
 
         $client = new Client();
@@ -73,8 +76,9 @@ class AuthController extends Controller
 
         if ($request->getStatusCode() == '401') {
             return response()->json([
+                'code'    => 401,
                 'message' => '账号或密码错误',
-            ], 401);
+            ]);
         }
 
         return response()->json($request->getBody()->getContents());
@@ -94,6 +98,7 @@ class AuthController extends Controller
         }
 
         return response()->json([
+            'code'    => 200,
             'message' => '登出成功',
         ]);
     }
@@ -105,7 +110,7 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        dd(DB::table('oauth_clients')->get()->toArray());
+        //        dd(DB::table('oauth_clients')->get()->toArray());
         $validator = Validator::make($request->all(), [
             'email'    => 'required',
             'password' => 'required',
@@ -118,14 +123,16 @@ class AuthController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
+                'code'    => 422,
                 'message' => $validator->errors()->first(),
-            ], 422);
+            ]);
         }
 
         if (!in_array($request->get('type'), ['student', 'teacher'])) {
             return response()->json([
+                'code'    => 400,
                 'message' => '注册类型有误',
-            ], 400);
+            ]);
         }
 
         $data = $request->all();
@@ -135,6 +142,7 @@ class AuthController extends Controller
         if ($request->get('type') == 'student') {
             if (Student::query()->where('email', $request->get('email'))->exists()) {
                 return response()->json([
+                    'code'    => 400,
                     'message' => '邮箱已被注册，请换一个邮箱',
                 ]);
             }
@@ -142,6 +150,7 @@ class AuthController extends Controller
         } else {
             if (Teacher::query()->where('email', $request->get('email'))->exists()) {
                 return response()->json([
+                    'code'    => 400,
                     'message' => '邮箱已被注册，请换一个邮箱',
                 ]);
             }
@@ -149,6 +158,7 @@ class AuthController extends Controller
         }
 
         return response()->json([
+            'code'    => 200,
             'message' => '注册成功',
         ]);
     }

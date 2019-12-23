@@ -1,18 +1,14 @@
 import axios from 'axios'
 
-// const baseUrl = 'http://laravel-passport-demo.test';
-const baseUrl = 'https://laravel-passport-demo.herokuapp.com';
+const baseUrl = 'http://laravel-passport-demo.test';
+// const baseUrl = 'https://laravel-passport-demo.herokuapp.com';
 
 export default {
 	register: function (params) {
-		console.log(params);
-		return axios.post(baseUrl + '/api/register', {
-
-		});
+		return axios.post(baseUrl + '/api/register', params);
 	},
 
 	login: function (params) {
-		console.log(params);
 		return axios.post(baseUrl + '/oauth/token', {
 			username: params.email,
 			type: params.type,
