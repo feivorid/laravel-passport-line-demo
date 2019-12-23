@@ -20,9 +20,11 @@ Vue.use(VueRouter);
 
 Vue.component('register-component', require('./components/RegisterComponent.vue'));
 Vue.component('login-component', require('./components/LoginComponent.vue'));
+Vue.component('home-conponent', require('./components/HomeComponent.vue'));
 
 const router = new VueRouter({
     routes: [
+        {path: '', name: 'home', component: require('./components/HomeComponent')},
         {path: '/register', name: 'register', component: require('./components/RegisterComponent')},
         {path: '/login', name: 'login', component: require('./components/LoginComponent')},
     ]
