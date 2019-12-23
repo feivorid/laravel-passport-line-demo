@@ -650,7 +650,8 @@ var Axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 			password: params.password,
 			guard: params.type,
 			client_id: 2,
-			client_secret: 'bjdSbRCb6ES6EzxvOfruK3uA1dm8GQzzcQACIg9l',
+			// client_secret: 'bjdSbRCb6ES6EzxvOfruK3uA1dm8GQzzcQACIg9l',
+			client_secret: 'BmXibm8eQo5xyuUTdzOlWJdJUE163tmsSF3Xx9T6',
 			grant_type: 'password'
 		});
 	},
