@@ -10,10 +10,6 @@
 							<li class="list-group-item">邮箱：{{user.email}}</li>
 							<li class="list-group-item">用户类型：{{type}}</li>
 						</ul>
-						<ul class="list-group col-md-6">
-							<li class="list-group-item"></li>
-							<li class="list-group-item"></li>
-						</ul>
 					</div>
 				</div>
 			</div>

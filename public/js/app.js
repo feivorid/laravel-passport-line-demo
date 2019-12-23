@@ -628,7 +628,6 @@ module.exports = __webpack_require__(49);
 
 // const baseUrl = 'http://laravel-passport-demo.test';
 var baseUrl = 'https://laravel-passport-demo.herokuapp.com';
-console.log(localStorage.token);
 var Axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 	baseURL: baseUrl,
 	timeout: 3000,
@@ -657,7 +656,6 @@ var Axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 	},
 
 	teacher: function teacher() {
-		console.log(localStorage.token);
 		return Axios.get('/api/teacher');
 	},
 
@@ -49714,7 +49712,7 @@ exports = module.exports = __webpack_require__(15)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49732,10 +49730,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
-//
-//
-//
 //
 //
 //
@@ -49853,27 +49847,14 @@ var render = function() {
               _c("li", { staticClass: "list-group-item" }, [
                 _vm._v("用户类型：" + _vm._s(_vm.type))
               ])
-            ]),
-            _vm._v(" "),
-            _vm._m(0)
+            ])
           ])
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "list-group col-md-6" }, [
-      _c("li", { staticClass: "list-group-item" }),
-      _vm._v(" "),
-      _c("li", { staticClass: "list-group-item" })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

@@ -3,7 +3,6 @@ import axios from 'axios';
 
 // const baseUrl = 'http://laravel-passport-demo.test';
 const baseUrl = 'https://laravel-passport-demo.herokuapp.com';
-console.log(localStorage.token);
 const Axios = axios.create({
 	baseURL: baseUrl,
 	timeout: 3000,
@@ -32,7 +31,6 @@ export default {
 	},
 
 	teacher: function () {
-		console.log(localStorage.token);
 		return Axios.get('/api/teacher');
 	},
 
