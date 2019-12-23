@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
+
     /**
      * 学生登录后首页
      * @return \Illuminate\Http\JsonResponse
@@ -17,7 +18,7 @@ class StudentController extends Controller
     {
         $student = auth('student')->user();
         if (!$student) {
-            return response()->json(['message' => '未登录'], 401);
+            return response()->json(['code' => '401', 'message' => '未登录']);
         }
 
         $follows = $student

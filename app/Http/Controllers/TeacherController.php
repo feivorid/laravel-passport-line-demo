@@ -14,7 +14,7 @@ class TeacherController extends Controller
 
         if (!$teacher) {
             return response()->json([
-                'success' => false,
+                'code'    => 401,
                 'message' => '请先登录',
             ]);
         }

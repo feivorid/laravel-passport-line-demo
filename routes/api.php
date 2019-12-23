@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 
-Route::middleware('client')->prefix('students')->group(function () {
-    Route::get('{student}', 'StudentController@index');
+Route::middleware('client')->group(function () {
+    Route::get('student', 'StudentController@index');
+    Route::get('teacher', 'TeacherController@index');
 });

@@ -21,8 +21,33 @@
 </template>
 
 <script>
+	import Api from '../api'
+
 	export default {
-		name: "HomeComponent"
+		name: "HomeComponent",
+		mounted() {
+			this.type = localStorage.user_type;
+			this.getUser();
+		},
+
+		data() {
+			return {
+				type: '',
+				user: {},
+			};
+		},
+
+		methods: {
+			async getUser() {
+				if (this.user_type === 'teacher') {
+					let result = await Api.teacher();
+				} else {
+					let result = await Api.student();
+				}
+
+				console.log(result);
+			}
+		}
 	}
 </script>
 

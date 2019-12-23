@@ -51,9 +51,9 @@
 	export default {
 		name: "LoginComponent",
 		mounted() {
-			if (localStorage.token) {
-				this.$router.push('/');
-			}
+			// if (localStorage.token) {
+			// 	this.$router.push('/');
+			// }
 		},
 		data() {
 			return {
@@ -84,15 +84,14 @@
 					password: this.password,
 				});
 
-				console.log(result);
-				if (result.data.code === 200) {
-					console.log(result);
+				if (result.status === 200) {
 					localStorage.token = result.data.access_token;
 					localStorage.refresh_token = result.data.refresh_token;
+					localStorage.user_type = this.type;
 					console.log(localStorage);
 					await this.$router.push('/');
 				} else {
-					alert(result.data.message);
+					console.log(result);
 				}
 			}
 		}

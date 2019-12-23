@@ -59,6 +59,9 @@
 
 	export default {
 		mounted() {
+			if (localStorage.token) {
+				this.$router.push('/');
+			}
 		},
 
 		data: () => {
