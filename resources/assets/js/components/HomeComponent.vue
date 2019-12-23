@@ -26,6 +26,10 @@
 	export default {
 		name: "HomeComponent",
 		mounted() {
+			if (!localStorage.token) {
+				this.$router.push('/login');
+				return false;
+			}
 			this.type = localStorage.user_type;
 			this.getUser();
 		},
