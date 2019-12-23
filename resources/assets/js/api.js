@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const baseUrl = 'http://laravel-passport-demo.test';
 // const baseUrl = 'https://laravel-passport-demo.herokuapp.com';
+console.log(localStorage.token);
 const Axios = axios.create({
 	baseURL: baseUrl,
 	timeout: 3000,
@@ -13,12 +14,6 @@ const Axios = axios.create({
 	}
 });
 
-Axios.interceptors.response.use(undefined, err => {
-	const error = err.response;
-	if (error.status === 401) {
-		alert('用户名或密码错误');
-	}
-});
 export default {
 	register: function (params) {
 		return Axios.post('/api/register', params);
@@ -37,6 +32,7 @@ export default {
 	},
 
 	teacher: function () {
+		console.log(localStorage.token);
 		return Axios.get('/api/teacher');
 	},
 
@@ -44,3 +40,10 @@ export default {
 		return Axios.get('/api/teacher');
 	},
 };
+
+Axios.interceptors.response.use(undefined, err => {
+	const error = err.response;
+	if (error.status === 401) {
+		alert('用户名或密码错误');
+	}
+});

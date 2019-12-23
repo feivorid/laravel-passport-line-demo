@@ -88,7 +88,6 @@
 					localStorage.token = result.data.access_token;
 					localStorage.refresh_token = result.data.refresh_token;
 					localStorage.user_type = this.type;
-					console.log(localStorage);
 					await this.$router.push('/');
 				} else {
 					console.log(result);

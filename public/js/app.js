@@ -628,6 +628,7 @@ module.exports = __webpack_require__(49);
 
 var baseUrl = 'http://laravel-passport-demo.test';
 // const baseUrl = 'https://laravel-passport-demo.herokuapp.com';
+console.log(localStorage.token);
 var Axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 	baseURL: baseUrl,
 	timeout: 3000,
@@ -638,12 +639,6 @@ var Axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 	}
 });
 
-Axios.interceptors.response.use(undefined, function (err) {
-	var error = err.response;
-	if (error.status === 401) {
-		alert('用户名或密码错误');
-	}
-});
 /* harmony default export */ __webpack_exports__["a"] = ({
 	register: function register(params) {
 		return Axios.post('/api/register', params);
@@ -662,11 +657,19 @@ Axios.interceptors.response.use(undefined, function (err) {
 	},
 
 	teacher: function teacher() {
+		console.log(localStorage.token);
 		return Axios.get('/api/teacher');
 	},
 
 	student: function student() {
 		return Axios.get('/api/teacher');
+	}
+});
+
+Axios.interceptors.response.use(undefined, function (err) {
+	var error = err.response;
+	if (error.status === 401) {
+		alert('用户名或密码错误');
 	}
 });
 
@@ -49288,7 +49291,7 @@ exports = module.exports = __webpack_require__(15)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49451,25 +49454,24 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 								result = _context.sent;
 
 								if (!(result.status === 200)) {
-									_context.next = 21;
+									_context.next = 20;
 									break;
 								}
 
 								localStorage.token = result.data.access_token;
 								localStorage.refresh_token = result.data.refresh_token;
 								localStorage.user_type = this.type;
-								console.log(localStorage);
-								_context.next = 19;
+								_context.next = 18;
 								return this.$router.push('/');
 
-							case 19:
-								_context.next = 22;
+							case 18:
+								_context.next = 21;
 								break;
 
-							case 21:
+							case 20:
 								console.log(result);
 
-							case 22:
+							case 21:
 							case 'end':
 								return _context.stop();
 						}
