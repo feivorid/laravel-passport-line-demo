@@ -10,21 +10,21 @@ class TeacherController extends Controller
 
     public function index()
     {
-        $teacher = auth('teacher_api')->user();
+        $user = auth('teacher')->user();
 
-        if (!$teacher) {
+        if (!$user) {
             return response()->json([
                 'code'    => 401,
                 'message' => '请先登录',
             ]);
         }
 
-        $students = $teacher
+        $students = $user
             ->students()
             ->with('students')
             ->where('status', StudentFollowTeacher::STATUS_ON)
             ->get();
 
-        return response()->json(compact('teacher', 'students'));
+        return response()->json(compact('user', 'students'));
     }
 }

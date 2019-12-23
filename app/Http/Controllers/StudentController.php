@@ -16,18 +16,18 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $student = auth('student')->user();
-        if (!$student) {
+        $user = auth('student')->user();
+        if (!$user) {
             return response()->json(['code' => '401', 'message' => '未登录']);
         }
 
-        $follows = $student
+        $follows = $user
             ->teachers()
             ->with('teacher')
             ->where('status', StudentFollowTeacher::STATUS_ON)
             ->get();
 
-        return response()->json(compact('student', 'follows'));
+        return response()->json(compact('user', 'follows'));
     }
 
     /**

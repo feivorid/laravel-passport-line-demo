@@ -1,13 +1,14 @@
 import axios from 'axios';
 // import qs from 'qs';
 
-// const baseUrl = 'http://laravel-passport-demo.test';
-const baseUrl = 'https://laravel-passport-demo.herokuapp.com';
+const baseUrl = 'http://laravel-passport-demo.test';
+// const baseUrl = 'https://laravel-passport-demo.herokuapp.com';
 const Axios = axios.create({
 	baseURL: baseUrl,
 	timeout: 3000,
 	headers: {
 		'Content-Type': 'application/json',
+		'Access-Control-Allow-Origin': '*',
 		'Authorization': 'Bearer ' + localStorage.token,
 	}
 });
@@ -29,20 +30,10 @@ export default {
 	},
 
 	teacher: function () {
-		console.log();
-		return axios.get('/api/teacher', {
-			headers: {'Authorization': 'Bearer ' + localStorage.token},
-		})
-			.then((res) => {
-				console.log(res);
-			})
+		return Axios.get('/api/teacher');
 	},
 
 	student: function () {
-		return axios.get('/api/teacher', {
-			headers: {'Authorization': 'Bearer ' + localStorage.token},
-		}).then((res) => {
-			console.log(res);
-		})
+		return Axios.get('/api/teacher');
 	},
 };
