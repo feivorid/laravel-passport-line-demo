@@ -1,8 +1,8 @@
 import axios from 'axios';
 // import qs from 'qs';
 
-const baseUrl = 'http://laravel-passport-demo.test';
-// const baseUrl = 'https://laravel-passport-demo.herokuapp.com';
+// const baseUrl = 'http://laravel-passport-demo.test';
+const baseUrl = 'https://laravel-passport-demo.herokuapp.com';
 console.log(localStorage.token);
 const Axios = axios.create({
 	baseURL: baseUrl,

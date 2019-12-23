@@ -626,8 +626,8 @@ module.exports = __webpack_require__(49);
 
 // import qs from 'qs';
 
-var baseUrl = 'http://laravel-passport-demo.test';
-// const baseUrl = 'https://laravel-passport-demo.herokuapp.com';
+// const baseUrl = 'http://laravel-passport-demo.test';
+var baseUrl = 'https://laravel-passport-demo.herokuapp.com';
 console.log(localStorage.token);
 var Axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 	baseURL: baseUrl,
