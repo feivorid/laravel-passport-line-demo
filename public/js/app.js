@@ -666,13 +666,6 @@ var Axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 	}
 });
 
-Axios.interceptors.response.use(undefined, function (err) {
-	var error = err.response;
-	if (error.status === 401) {
-		alert('用户名或密码错误');
-	}
-});
-
 /***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {

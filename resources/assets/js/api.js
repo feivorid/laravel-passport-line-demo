@@ -40,10 +40,3 @@ export default {
 		return Axios.get('/api/teacher');
 	},
 };
-
-Axios.interceptors.response.use(undefined, err => {
-	const error = err.response;
-	if (error.status === 401) {
-		alert('用户名或密码错误');
-	}
-});
