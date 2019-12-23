@@ -12,6 +12,13 @@ const Axios = axios.create({
 		'Authorization': 'Bearer ' + localStorage.token,
 	}
 });
+
+Axios.interceptors.response.use(undefined, err => {
+	const error = err.response;
+	if (error.status === 401) {
+		alert('用户名或密码错误');
+	}
+});
 export default {
 	register: function (params) {
 		return Axios.post('/api/register', params);

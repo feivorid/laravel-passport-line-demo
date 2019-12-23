@@ -33,7 +33,7 @@
 							<div class="form-group">
 								<div class="col-md-6 col-md-offset-4">
 									<button type="submit" class="btn btn-primary" @click="login">登录</button>
-									<button type="button" class="btn btn-primary pull-right">LINE登录</button>
+									<!--									<button type="button" class="btn btn-primary pull-right">LINE登录</button>-->
 									<router-link class="btn btn-primary pull-right" to="/register">去注册</router-link>
 								</div>
 							</div>
@@ -51,9 +51,9 @@
 	export default {
 		name: "LoginComponent",
 		mounted() {
-			// if (localStorage.token) {
-			// 	this.$router.push('/');
-			// }
+			if (localStorage.token) {
+				this.$router.push('/');
+			}
 		},
 		data() {
 			return {

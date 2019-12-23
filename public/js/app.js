@@ -637,6 +637,13 @@ var Axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 		'Authorization': 'Bearer ' + localStorage.token
 	}
 });
+
+Axios.interceptors.response.use(undefined, function (err) {
+	var error = err.response;
+	if (error.status === 401) {
+		alert('用户名或密码错误');
+	}
+});
 /* harmony default export */ __webpack_exports__["a"] = ({
 	register: function register(params) {
 		return Axios.post('/api/register', params);
@@ -49385,9 +49392,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: "LoginComponent",
 	mounted: function mounted() {
-		// if (localStorage.token) {
-		// 	this.$router.push('/');
-		// }
+		if (localStorage.token) {
+			this.$router.push('/');
+		}
 	},
 	data: function data() {
 		return {
@@ -49649,15 +49656,6 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary pull-right",
-                        attrs: { type: "button" }
-                      },
-                      [_vm._v("LINE登录")]
-                    ),
-                    _vm._v(" "),
-                    _c(
                       "router-link",
                       {
                         staticClass: "btn btn-primary pull-right",
@@ -49721,7 +49719,7 @@ exports = module.exports = __webpack_require__(15)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49739,6 +49737,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
 //
 //
 //
@@ -49854,6 +49853,10 @@ var render = function() {
               _vm._v(" "),
               _c("li", { staticClass: "list-group-item" }, [
                 _vm._v("邮箱：" + _vm._s(_vm.user.email))
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "list-group-item" }, [
+                _vm._v("用户类型：" + _vm._s(_vm.type))
               ])
             ]),
             _vm._v(" "),
