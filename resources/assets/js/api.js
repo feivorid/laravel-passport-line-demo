@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const baseUrl = 'http://laravel-passport-demo.test';
 // const baseUrl = 'http://laravel-passport-demo.test';
+const baseUrl = 'https://laravel-passport-demo.herokuapp.com';
 
 export default {
 	register: function (params) {

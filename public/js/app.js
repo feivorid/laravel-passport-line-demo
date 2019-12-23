@@ -48804,8 +48804,8 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 
 
-var baseUrl = 'http://laravel-passport-demo.test';
 // const baseUrl = 'http://laravel-passport-demo.test';
+var baseUrl = 'https://laravel-passport-demo.herokuapp.com';
 
 /* harmony default export */ __webpack_exports__["a"] = ({
 	register: function register(params) {
