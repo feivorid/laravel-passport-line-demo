@@ -10,6 +10,7 @@ use Encore\Admin\Show;
 
 class StudentController extends AdminController
 {
+
     /**
      * Title for current resource.
      *
@@ -29,10 +30,10 @@ class StudentController extends AdminController
         $grid->column('ID', __('Id'));
         $grid->column('name', __('Name'));
         $grid->column('email', __('Email'));
-//        $grid->column('phone', __('Phone'));
-//        $grid->column('password', __('Password'));
-        $grid->column('age', __('Age'));
-        $grid->column('gender', __('Gender'));
+        //        $grid->column('phone', __('Phone'));
+        //        $grid->column('password', __('Password'));
+        //        $grid->column('age', __('Age'));
+        //        $grid->column('gender', __('Gender'));
         $grid->column('enabled', __('Enabled'))->switch();
         $grid->column('intro', __('Intro'));
         $grid->column('created_at', __('Created at'));
@@ -76,13 +77,18 @@ class StudentController extends AdminController
         $form = new Form(new Student);
 
         $form->text('name', __('Name'));
-        $form->email('email', __('Email'));
-//        $form->mobile('phone', __('Phone'));
-        $form->password('password', __('Password'));
-        $form->number('age', __('Age'));
-        $form->number('gender', __('Gender'))->default(1);
+        $form->email('email', __('Email'))->creationRules(['required', "unique:students"])
+            ->updateRules(['required', "unique:students,email,{{id}}"]);
+        //        $form->mobile('phone', __('Phone'));
+        $form->password('password', __('Password'))->rules('required');
+        //        $form->number('age', __('Age'));
+        //        $form->number('gender', __('Gender'))->default(1);
         $form->switch('enabled', __('Enabled'))->default(1);
         $form->textarea('intro', __('Intro'));
+
+        $form->saving(function ($form) {
+            $form->password = bcrypt($form->password);
+        });
 
         return $form;
     }
