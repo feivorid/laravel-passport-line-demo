@@ -13,6 +13,15 @@ const Axios = axios.create({
 	}
 });
 
+// Axios.interceptors.response.use(response => {
+// 	return response;
+// }, error => {
+// 	if (error.response.status === 401) {
+// 		alert('请先登录');
+// 	}
+// 	return error;
+// });
+
 export default {
 	register: function (params) {
 		return Axios.post('/api/register', params);
@@ -38,4 +47,5 @@ export default {
 	student: function () {
 		return Axios.get('/api/teacher');
 	},
+
 };

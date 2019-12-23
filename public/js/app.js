@@ -638,6 +638,15 @@ var Axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 	}
 });
 
+// Axios.interceptors.response.use(response => {
+// 	return response;
+// }, error => {
+// 	if (error.response.status === 401) {
+// 		alert('请先登录');
+// 	}
+// 	return error;
+// });
+
 /* harmony default export */ __webpack_exports__["a"] = ({
 	register: function register(params) {
 		return Axios.post('/api/register', params);
@@ -663,6 +672,7 @@ var Axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 	student: function student() {
 		return Axios.get('/api/teacher');
 	}
+
 });
 
 /***/ }),
