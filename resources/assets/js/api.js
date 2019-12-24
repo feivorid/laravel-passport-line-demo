@@ -9,7 +9,7 @@ const Axios = axios.create({
 	headers: {
 		'Content-Type': 'application/json',
 		'Access-Control-Allow-Origin': '*',
-		'Authorization': 'Bearer ' + localStorage.token,
+		'Authorization': 'Bearer ' + localStorage.getItem('token'),
 	}
 });
 
@@ -17,7 +17,7 @@ const Axios = axios.create({
 // 	return response;
 // }, error => {
 // 	if (error.response.status === 401) {
-// 		alert('请先登录');
+// 		alert('授权失败');
 // 	}
 // 	return error;
 // });
@@ -37,7 +37,7 @@ export default {
 			// client_secret: 'bjdSbRCb6ES6EzxvOfruK3uA1dm8GQzzcQACIg9l',
 			client_secret: 'BmXibm8eQo5xyuUTdzOlWJdJUE163tmsSF3Xx9T6',
 			grant_type: 'password',
-		});
+		})
 	},
 
 	teacher: function () {

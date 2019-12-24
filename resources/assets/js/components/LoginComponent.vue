@@ -64,7 +64,7 @@
 		},
 
 		methods: {
-			async login() {
+			login() {
 				if (!this.type) {
 					alert('请选择类型');
 					return false;
@@ -78,20 +78,24 @@
 					return false;
 				}
 
-				let result = await Api.login({
+				Api.login({
 					type: this.type,
 					email: this.email,
 					password: this.password,
+				}).then((result) => {
+					if (result.status === 200) {
+						localStorage.setItem('token', result.data.access_token);
+						localStorage.setItem('refresh_token', result.data.refresh_token);
+						localStorage.setItem('user_type', this.type);
+						console.log(localStorage.getItem('token'));
+						window.location.href= '/';
+						// this.$router.push('/');
+					}
+				}).catch((error) => {
+					if (error.response.status === 401) {
+						alert('授权失败');
+					}
 				});
-
-				if (result.status === 200) {
-					localStorage.token = result.data.access_token;
-					localStorage.refresh_token = result.data.refresh_token;
-					localStorage.user_type = this.type;
-					await this.$router.push('/');
-				} else {
-					console.log(result);
-				}
 			}
 		}
 	}

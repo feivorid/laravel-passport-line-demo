@@ -634,7 +634,7 @@ var Axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 	headers: {
 		'Content-Type': 'application/json',
 		'Access-Control-Allow-Origin': '*',
-		'Authorization': 'Bearer ' + localStorage.token
+		'Authorization': 'Bearer ' + localStorage.getItem('token')
 	}
 });
 
@@ -642,7 +642,7 @@ var Axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 // 	return response;
 // }, error => {
 // 	if (error.response.status === 401) {
-// 		alert('请先登录');
+// 		alert('授权失败');
 // 	}
 // 	return error;
 // });
@@ -49293,7 +49293,7 @@ exports = module.exports = __webpack_require__(15)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49337,13 +49337,7 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api__ = __webpack_require__(5);
-
-
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api__ = __webpack_require__(5);
 //
 //
 //
@@ -49411,82 +49405,41 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 
 	methods: {
-		login: function () {
-			var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-				var result;
-				return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-					while (1) {
-						switch (_context.prev = _context.next) {
-							case 0:
-								if (this.type) {
-									_context.next = 3;
-									break;
-								}
+		login: function login() {
+			var _this = this;
 
-								alert('请选择类型');
-								return _context.abrupt('return', false);
-
-							case 3:
-								if (this.email) {
-									_context.next = 6;
-									break;
-								}
-
-								alert('请输入邮箱');
-								return _context.abrupt('return', false);
-
-							case 6:
-								if (this.password) {
-									_context.next = 9;
-									break;
-								}
-
-								alert('请输入密码');
-								return _context.abrupt('return', false);
-
-							case 9:
-								_context.next = 11;
-								return __WEBPACK_IMPORTED_MODULE_1__api__["a" /* default */].login({
-									type: this.type,
-									email: this.email,
-									password: this.password
-								});
-
-							case 11:
-								result = _context.sent;
-
-								if (!(result.status === 200)) {
-									_context.next = 20;
-									break;
-								}
-
-								localStorage.token = result.data.access_token;
-								localStorage.refresh_token = result.data.refresh_token;
-								localStorage.user_type = this.type;
-								_context.next = 18;
-								return this.$router.push('/');
-
-							case 18:
-								_context.next = 21;
-								break;
-
-							case 20:
-								console.log(result);
-
-							case 21:
-							case 'end':
-								return _context.stop();
-						}
-					}
-				}, _callee, this);
-			}));
-
-			function login() {
-				return _ref.apply(this, arguments);
+			if (!this.type) {
+				alert('请选择类型');
+				return false;
+			}
+			if (!this.email) {
+				alert('请输入邮箱');
+				return false;
+			}
+			if (!this.password) {
+				alert('请输入密码');
+				return false;
 			}
 
-			return login;
-		}()
+			__WEBPACK_IMPORTED_MODULE_0__api__["a" /* default */].login({
+				type: this.type,
+				email: this.email,
+				password: this.password
+			}).then(function (result) {
+				if (result.status === 200) {
+					localStorage.setItem('token', result.data.access_token);
+					localStorage.setItem('refresh_token', result.data.refresh_token);
+					localStorage.setItem('user_type', _this.type);
+					console.log(localStorage.getItem('token'));
+					window.location.href = '/';
+					// this.$router.push('/');
+				}
+			}).catch(function (error) {
+				if (error.response.status === 401) {
+					alert('授权失败');
+				}
+			});
+		}
 	}
 });
 
