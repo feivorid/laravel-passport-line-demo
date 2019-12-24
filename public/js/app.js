@@ -49751,7 +49751,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			if (this.type === 'teacher') {
 				__WEBPACK_IMPORTED_MODULE_0__api__["a" /* default */].teacher().then(function (result) {
 					_this.user = result.data.user;
-					_this.students = result.data.students;
+					_this.students = result.data.follows;
 				}).catch(function (error) {
 					if (error.response.status === 401) {
 						localStorage.setItem('token', '');
@@ -50007,7 +50007,7 @@ var render = function() {
           { staticClass: "list-group" },
           _vm._l(_vm.follows, function(follow) {
             return _c("li", { staticClass: "list-group-item" }, [
-              _vm._v(_vm._s(follow.id))
+              _vm._v(_vm._s(follow.student ? follow.student.name : "无名氏"))
             ])
           }),
           0

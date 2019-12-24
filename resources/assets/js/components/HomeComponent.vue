@@ -54,7 +54,7 @@
 					Api.teacher()
 						.then((result) => {
 							this.user = result.data.user;
-							this.students = result.data.students;
+							this.students = result.data.follows;
 						})
 						.catch((error) => {
 							if (error.response.status === 401) {

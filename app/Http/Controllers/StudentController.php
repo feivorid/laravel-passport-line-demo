@@ -30,8 +30,8 @@ class StudentController extends Controller
             ->get();
 
         $teachers->each(function ($item) {
-            if ($item->followes) {
-                $teacher = $item->followes->first();
+            if ($item->follows) {
+                $teacher = $item->follows->first();
                 $item->followed = $teacher && $teacher->status == StudentFollowTeacher::STATUS_ON ? true : false;
             } else {
                 $item->followed = false;

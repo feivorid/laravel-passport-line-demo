@@ -7,12 +7,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Student extends Authenticatable
 {
+
     use HasApiTokens;
 
     protected $guarded = ['id'];
     protected $hidden = ['password'];
     protected $primaryKey = 'id';
-
 
     public function teachers()
     {
