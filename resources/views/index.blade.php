@@ -6,12 +6,12 @@
 
 	<title>Laravel-Passport-Demo</title>
 
-	<link href="{{ asset('css/app.css')  }}" rel="stylesheet">
+	<link href="/css/app.css" rel="stylesheet">
 </head>
 	<body>
 	<div id="app">
 		<router-view></router-view>
 	</div>
-	<script src="{{ asset('js/app.js') }}"></script>
+	<script src="js/app.js"></script>
 	</body>
 </html>
