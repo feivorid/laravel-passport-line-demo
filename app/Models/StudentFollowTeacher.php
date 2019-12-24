@@ -15,7 +15,7 @@ class StudentFollowTeacher extends Model
     ];
 
     const STATUS_ON = 1;
-    const STATUS_OFF = -1;
+    const STATUS_OFF = 0;
 
     public function student()
     {

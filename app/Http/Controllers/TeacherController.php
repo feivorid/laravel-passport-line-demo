@@ -19,12 +19,14 @@ class TeacherController extends Controller
             ]);
         }
 
-        $students = $user
-            ->students()
-            ->with('students')
+        $follows = $user->follows()
+            ->with(['student' => function ($query) {
+                $query->select('id', 'name', 'email');
+            }])
             ->where('status', StudentFollowTeacher::STATUS_ON)
+            ->select('id', 'status', 'student_id')
             ->get();
 
-        return response()->json(compact('user', 'students'));
+        return response()->json(compact('user', 'follows'));
     }
 }

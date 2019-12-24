@@ -1,11 +1,11 @@
 <template>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
+			<div class="col-md-4 col-md-offset-2">
 				<div class="panel panel-default">
-					<div class="panel-heading">个人中心</div>
+					<div class="panel-heading">个人信息</div>
 					<div class="panel-body">
-						<ul class="list-group col-md-6">
+						<ul class="list-group">
 							<li class="list-group-item">姓名：{{user.name}}</li>
 							<li class="list-group-item">邮箱：{{user.email}}</li>
 							<li class="list-group-item">用户类型：{{type}}</li>
@@ -16,6 +16,9 @@
 					</div>
 				</div>
 			</div>
+
+			<student-component v-if="type === 'teacher'" v-bind:follows="students"></student-component>
+			<teacher-component v-if="type === 'student'" v-bind:teachers="teachers"></teacher-component>
 		</div>
 	</div>
 </template>
@@ -39,18 +42,21 @@
 			return {
 				type: '',
 				user: {},
+				students: [],
+				teachers: [],
 			};
 		},
 
 		methods: {
 			getUser() {
-				if (this.user_type === 'teacher') {
+				console.log();
+				if (this.type === 'teacher') {
 					Api.teacher()
 						.then((result) => {
 							this.user = result.data.user;
+							this.students = result.data.students;
 						})
 						.catch((error) => {
-							console.log(error.response);
 							if (error.response.status === 401) {
 								localStorage.setItem('token', '');
 								localStorage.setItem('refresh_token', '');
@@ -62,6 +68,7 @@
 					Api.student()
 						.then((result) => {
 							this.user = result.data.user;
+							this.teachers = result.data.teachers;
 						})
 						.catch((error) => {
 							if (error.response.status === 401) {

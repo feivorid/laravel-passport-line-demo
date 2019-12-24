@@ -45,7 +45,11 @@ export default {
 	},
 
 	student: function () {
-		return Axios.get('/api/teacher');
+		return Axios.get('/api/student');
 	},
+
+	follow: function(params) {
+		return Axios.post('/api/follow', params);
+	}
 
 };

@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -10,6 +9,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import VueRouter from 'vue-router';
+
 Vue.use(VueRouter);
 
 /**
@@ -20,17 +20,19 @@ Vue.use(VueRouter);
 
 Vue.component('register-component', require('./components/RegisterComponent.vue'));
 Vue.component('login-component', require('./components/LoginComponent.vue'));
-Vue.component('home-conponent', require('./components/HomeComponent.vue'));
+Vue.component('home-component', require('./components/HomeComponent.vue'));
+Vue.component('student-component', require('./components/StudentComponent'));
+Vue.component('teacher-component', require('./components/TeacherComponent'));
 
 const router = new VueRouter({
-    routes: [
-        {path: '', name: 'home', component: require('./components/HomeComponent')},
-        {path: '/register', name: 'register', component: require('./components/RegisterComponent')},
-        {path: '/login', name: 'login', component: require('./components/LoginComponent')},
-    ]
+	routes: [
+		{path: '', name: 'home', component: require('./components/HomeComponent')},
+		{path: '/register', name: 'register', component: require('./components/RegisterComponent')},
+		{path: '/login', name: 'login', component: require('./components/LoginComponent')},
+	]
 });
 
 const app = new Vue({
-    el: '#app',
-    router,
+	el: '#app',
+	router,
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use App\Models\StudentFollowTeacher;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -21,13 +22,23 @@ class StudentController extends Controller
             return response()->json(['code' => '401', 'message' => '未登录']);
         }
 
-        $follows = $user
-            ->teachers()
-            ->with('teacher')
-            ->where('status', StudentFollowTeacher::STATUS_ON)
+        $teachers = Teacher::query()
+            ->with(['follows' => function ($query) use ($user) {
+                $query->where('student_id', $user->id);
+            }])
+            ->where('enabled', true)
             ->get();
 
-        return response()->json(compact('user', 'follows'));
+        $teachers->each(function ($item) {
+            if ($item->followes) {
+                $teacher = $item->followes->first();
+                $item->followed = $teacher && $teacher->status == StudentFollowTeacher::STATUS_ON ? true : false;
+            } else {
+                $item->followed = false;
+            }
+        });
+
+        return response()->json(compact('user', 'teachers'));
     }
 
     /**
@@ -38,57 +49,50 @@ class StudentController extends Controller
     public function follow(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'student_id' => 'required',
             'teacher_id' => 'required',
-            'action'     => 'required',
+            'status'     => 'required',
         ], [
-            'student_id.required' => 'student_id参数缺失',
             'teacher_id.required' => 'teacher_id参数缺失',
-            'action.required'     => 'action参数缺失',
+            'status.required'     => 'status参数缺失',
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors()->first());
+            return response()->json(['message' => $validator->errors()->first()], 400);
         }
 
-        $studentId = $request->get('student_id');
+        $studentId = auth('student')->user()->id;
         $teacherId = $request->get('teacher_id');
-        $action = $request->get('action');
+        $status = $request->get('status');
 
-        if ($action == StudentFollowTeacher::STATUS_ON) {
-            $follow = StudentFollowTeacher::query()
-                ->where('student_id', $studentId)
-                ->where('teacher_id', $teacherId)
-                ->first();
+        $follow = StudentFollowTeacher::query()
+            ->where('student_id', $studentId)
+            ->where('teacher_id', $teacherId)
+            ->first();
 
-            if (!$follow) {
-                StudentFollowTeacher::query()->create([
-                    'student_id' => $studentId,
-                    'teacher_id' => $teacherId,
-                    'status'     => $action,
-                ]);
-
-                return response()->json([
-                    'success' => true,
-                    'message' => '操作成功',
-                ]);
-            }
-
-            if ($follow->status == $action) {
-                $str = $action == StudentFollowTeacher::STATUS_ON ? '关注' : '取消关注';
-                return response()->json([
-                    'success' => false,
-                    'message' => '已' . $str . '，不能重复操作',
-                ]);
-            }
-
-            $follow->status = !$follow->status;
-            $follow->save();
+        if (!$follow) {
+            StudentFollowTeacher::query()->create([
+                'student_id' => $studentId,
+                'teacher_id' => $teacherId,
+                'status'     => $status,
+            ]);
 
             return response()->json([
-                'success' => true,
                 'message' => '操作成功',
             ]);
         }
+
+        if ($follow && $follow->status == $status) {
+            $str = $status == StudentFollowTeacher::STATUS_ON ? '关注' : '取消关注';
+            return response()->json([
+                'message' => '已' . $str . '，不能重复操作',
+            ], 400);
+        }
+
+        $follow->status = !$follow->status;
+        $follow->save();
+
+        return response()->json([
+            'message' => '操作成功',
+        ]);
     }
 }

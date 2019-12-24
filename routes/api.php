@@ -23,4 +23,6 @@ Route::post('login', 'AuthController@login');
 Route::middleware('client')->group(function () {
     Route::get('student', 'StudentController@index');
     Route::get('teacher', 'TeacherController@index');
+
+    Route::post('follow', 'StudentController@follow'); //学生关注/取消关注老师API
 });
