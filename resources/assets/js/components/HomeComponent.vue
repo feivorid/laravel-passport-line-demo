@@ -28,6 +28,7 @@
 				return false;
 			}
 			this.type = localStorage.user_type;
+			console.log(this.type);
 			this.getUser();
 		},
 
@@ -39,13 +40,34 @@
 		},
 
 		methods: {
-			async getUser() {
+			getUser() {
 				if (this.user_type === 'teacher') {
-					let result = await Api.teacher();
-					this.user = result.data.user;
+					Api.teacher()
+						.then((result) => {
+							this.user = result.data.user;
+						})
+						.catch((error) => {
+							console.log(error.response);
+							if (error.response.status === 401) {
+								localStorage.setItem('token', '');
+								localStorage.setItem('refresh_token', '');
+								localStorage.setItem('user_type', '');
+								this.$router.push('/login');
+							}
+						});
 				} else {
-					let result = await Api.student();
-					this.user = result.data.user;
+					Api.student()
+						.then((result) => {
+							this.user = result.data.user;
+						})
+						.catch((error) => {
+							if (error.response.status === 401) {
+								localStorage.setItem('token', '');
+								localStorage.setItem('refresh_token', '');
+								localStorage.setItem('user_type', '');
+								this.$router.push('/login');
+							}
+						});
 				}
 			}
 		}
