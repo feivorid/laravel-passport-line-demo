@@ -14,7 +14,7 @@ class Student extends Authenticatable
     protected $hidden = ['password'];
     protected $primaryKey = 'id';
 
-    public function teachers()
+    public function follows()
     {
         return $this->hasMany(StudentFollowTeacher::class, 'student_id');
     }

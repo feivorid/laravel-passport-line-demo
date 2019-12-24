@@ -26,6 +26,11 @@
 		props: {
 			teachers: Array,
 		},
+		data: () => {
+			return {
+				teachers: this.teachers,
+			};
+		},
 		methods: {
 			follow(id, followed) {
 				Api.follow({

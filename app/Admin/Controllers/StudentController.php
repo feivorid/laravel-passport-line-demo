@@ -7,6 +7,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Encore\Admin\Widgets\Table;
 
 class StudentController extends AdminController
 {
@@ -27,17 +28,29 @@ class StudentController extends AdminController
     {
         $grid = new Grid(new Student);
 
-        $grid->column('ID', __('Id'));
-        $grid->column('name', __('Name'));
-        $grid->column('email', __('Email'));
+        $grid->column('id', __('ID'));
+        $grid->column('name', __('姓名'));
+        $grid->column('email', __('邮箱'));
         //        $grid->column('phone', __('Phone'));
         //        $grid->column('password', __('Password'));
         //        $grid->column('age', __('Age'));
         //        $grid->column('gender', __('Gender'));
-        $grid->column('enabled', __('Enabled'))->switch();
-        $grid->column('intro', __('Intro'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('enabled', __('状态'))->switch();
+        $grid->column('intro', __('简介'));
+        $grid->column('teachers', '关注的老师')->modal(function ($model) {
+            $follows = $model->follows()->with(['teacher'])->where('status', 1)->get();
+            $teachers = collect();
+            $follows->each(function ($item) use (&$teachers) {
+                $teachers->push($item->teacher);
+            });
+            $teachers = $teachers->map(function ($item) {
+                return $item->only(['id', 'name', 'email', 'created_at']);
+            });
+
+            return new Table(['ID', '姓名', '邮箱', '注册时间'], $teachers->toArray());
+        });
+        $grid->column('created_at', __('创建时间'));
+        $grid->column('updated_at', __('更新时间'));
 
         return $grid;
     }
@@ -76,15 +89,15 @@ class StudentController extends AdminController
     {
         $form = new Form(new Student);
 
-        $form->text('name', __('Name'));
-        $form->email('email', __('Email'))->creationRules(['required', "unique:students"])
+        $form->text('name', __('姓名'));
+        $form->email('email', __('邮箱'))->creationRules(['required', "unique:students"])
             ->updateRules(['required', "unique:students,email,{{id}}"]);
         //        $form->mobile('phone', __('Phone'));
-        $form->password('password', __('Password'))->rules('required');
+        $form->password('password', __('密码'))->rules('required');
         //        $form->number('age', __('Age'));
         //        $form->number('gender', __('Gender'))->default(1);
-        $form->switch('enabled', __('Enabled'))->default(1);
-        $form->textarea('intro', __('Intro'));
+        $form->switch('enabled', __('状态'))->default(1);
+        $form->textarea('intro', __('简介'));
 
         $form->saving(function ($form) {
             $form->password = bcrypt($form->password);
