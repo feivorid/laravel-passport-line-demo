@@ -38,7 +38,7 @@
 					status: followed ? 0 : 1,
 				}).then((result) => {
 					if (result.status === 200) {
-						alert('操作成功');
+						window.location.reload();
 					}
 				}).catch((error) => {
 					if (error.response.status === 400) {

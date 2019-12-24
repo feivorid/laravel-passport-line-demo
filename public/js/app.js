@@ -619,8 +619,8 @@ module.exports = function normalizeComponent (
 
 // import qs from 'qs';
 
-var baseUrl = 'http://laravel-passport-demo.test';
-// const baseUrl = 'https://laravel-passport-demo.herokuapp.com';
+// const baseUrl = 'http://laravel-passport-demo.test';
+var baseUrl = 'https://laravel-passport-demo.herokuapp.com';
 var Axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 	baseURL: baseUrl,
 	timeout: 3000,
@@ -652,8 +652,8 @@ var Axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 			password: params.password,
 			guard: params.type,
 			client_id: 2,
-			client_secret: 'bjdSbRCb6ES6EzxvOfruK3uA1dm8GQzzcQACIg9l',
-			// client_secret: 'BmXibm8eQo5xyuUTdzOlWJdJUE163tmsSF3Xx9T6',
+			// client_secret: 'bjdSbRCb6ES6EzxvOfruK3uA1dm8GQzzcQACIg9l',
+			client_secret: 'BmXibm8eQo5xyuUTdzOlWJdJUE163tmsSF3Xx9T6',
 			grant_type: 'password'
 		});
 	},
@@ -50166,7 +50166,7 @@ var _this = this;
 				status: followed ? 0 : 1
 			}).then(function (result) {
 				if (result.status === 200) {
-					alert('操作成功');
+					window.location.reload();
 				}
 			}).catch(function (error) {
 				if (error.response.status === 400) {
