@@ -9,6 +9,9 @@
 							<li class="list-group-item">姓名：{{user.name}}</li>
 							<li class="list-group-item">邮箱：{{user.email}}</li>
 							<li class="list-group-item">用户类型：{{type}}</li>
+							<li class="list-group-item">
+								<button class="btn btn-primary" @click="logout">登出</button>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -69,6 +72,10 @@
 							}
 						});
 				}
+			},
+			logout() {
+				localStorage.clear();
+				this.$router.push('/login');
 			}
 		}
 	}

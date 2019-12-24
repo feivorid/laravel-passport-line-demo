@@ -619,8 +619,8 @@ module.exports = function normalizeComponent (
 
 // import qs from 'qs';
 
-// const baseUrl = 'http://laravel-passport-demo.test';
-var baseUrl = 'https://laravel-passport-demo.herokuapp.com';
+var baseUrl = 'http://laravel-passport-demo.test';
+// const baseUrl = 'https://laravel-passport-demo.herokuapp.com';
 var Axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 	baseURL: baseUrl,
 	timeout: 3000,
@@ -652,8 +652,8 @@ var Axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 			password: params.password,
 			guard: params.type,
 			client_id: 2,
-			// client_secret: 'bjdSbRCb6ES6EzxvOfruK3uA1dm8GQzzcQACIg9l',
-			client_secret: 'BmXibm8eQo5xyuUTdzOlWJdJUE163tmsSF3Xx9T6',
+			client_secret: 'bjdSbRCb6ES6EzxvOfruK3uA1dm8GQzzcQACIg9l',
+			// client_secret: 'BmXibm8eQo5xyuUTdzOlWJdJUE163tmsSF3Xx9T6',
 			grant_type: 'password'
 		});
 	},
@@ -49676,7 +49676,7 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49688,6 +49688,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api__ = __webpack_require__(4);
+//
+//
+//
 //
 //
 //
@@ -49757,6 +49760,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					}
 				});
 			}
+		},
+		logout: function logout() {
+			localStorage.clear();
+			this.$router.push('/login');
 		}
 	}
 });
@@ -49787,6 +49794,14 @@ var render = function() {
               _vm._v(" "),
               _c("li", { staticClass: "list-group-item" }, [
                 _vm._v("用户类型：" + _vm._s(_vm.type))
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "list-group-item" }, [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", on: { click: _vm.logout } },
+                  [_vm._v("登出")]
+                )
               ])
             ])
           ])
