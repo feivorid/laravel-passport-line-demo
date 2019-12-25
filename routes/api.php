@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
+Route::get('line/callback', 'AuthController@lineCallback');
 
 Route::middleware('client')->group(function () {
     Route::get('student', 'StudentController@index');
