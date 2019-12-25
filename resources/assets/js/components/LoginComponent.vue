@@ -33,9 +33,8 @@
 							<div class="form-group">
 								<div class="col-md-6 col-md-offset-4">
 									<button type="submit" class="btn btn-primary" @click="login">登录</button>
-									<!--									<button type="button" class="btn btn-primary pull-right">LINE登录</button>-->
 									<router-link class="btn btn-primary pull-right" to="/register">去注册</router-link>
-									<button class="btn btn-success" @click="loginAsLine">LINE登录</button>
+									<a href="https://laravel-passport-demo.herokuapp.com/api/login/line" class="btn btn-success">LINE登录</a>
 								</div>
 							</div>
 						</div>
@@ -97,9 +96,6 @@
 						alert('授权失败');
 					}
 				});
-			},
-			loginAsLine() {
-				Api.loginAsLine();
 			}
 		}
 	}

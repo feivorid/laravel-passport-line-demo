@@ -40,10 +40,6 @@ export default {
 		})
 	},
 
-	loginAsLine: function () {
-		return Axios.get('/api/login/line');
-	},
-
 	teacher: function () {
 		return Axios.get('/api/teacher');
 	},
