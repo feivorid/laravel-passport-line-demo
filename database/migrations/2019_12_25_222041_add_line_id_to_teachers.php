@@ -14,7 +14,7 @@ class AddLineIdToTeachers extends Migration
      */
     public function up()
     {
-        Schema::create('teachers', function (Blueprint $table) {
+        Schema::table('teachers', function (Blueprint $table) {
             $table->string('line_id')->default('');
         });
     }
@@ -26,7 +26,7 @@ class AddLineIdToTeachers extends Migration
      */
     public function down()
     {
-        Schema::create('teachers', function (Blueprint $table) {
+        Schema::table('teachers', function (Blueprint $table) {
             $table->dropColumn('line_id');
         });
     }
