@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>LINE登录</title>
+	<link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
@@ -53,5 +61,6 @@
 		</div>
 	</div>
 </div>
-
-<script src="/js/bootstrap.js"></script>
+</body>
+<script src="/js/app.js"></script>
+</html>
