@@ -165,13 +165,12 @@ class AuthController extends Controller
 
     public function line()
     {
-        info(123131231212);
         return Socialite::with('line')->redirect();
     }
 
     public function lineCallback()
     {
-        info(111111);
-        return Socialite::driver('line')->user();
+        $user =Socialite::driver('line')->user();
+        dd($user);
     }
 }
