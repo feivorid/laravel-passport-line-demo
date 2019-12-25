@@ -175,7 +175,6 @@ class AuthController extends Controller
 
         $line = Line::query()->where('line_id', $user->getId());
 
-        $type = 'new';
         if (!$line) {
             $line = Line::query()->create([
                 'line_id' => $user->getId(),
@@ -183,6 +182,7 @@ class AuthController extends Controller
                 'email'   => $user->getEmail(),
                 'avatar'  => $user->getAvatar(),
             ]);
+            $type = 'new';
         } else {
             $teacher = Teacher::query()->where('line_id', $user->getId())->first();
             $students = Student::query()->where('line_id', $user->getId())->get();

@@ -54,4 +54,4 @@
 	</div>
 </div>
 
-<script src="{{resource_path() . '/assets/js/bootstrap.js'}}"></script>
+<script src="/js/bootstrap.js"></script>
