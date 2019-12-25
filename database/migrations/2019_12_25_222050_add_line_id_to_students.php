@@ -13,7 +13,7 @@ class AddLineIdToStudents extends Migration
      */
     public function up()
     {
-        Schema::table('student', function (Blueprint $table) {
+        Schema::table('students', function (Blueprint $table) {
             $table->string('line_id')->default('');
         });
     }
@@ -25,7 +25,7 @@ class AddLineIdToStudents extends Migration
      */
     public function down()
     {
-        Schema::table('student', function (Blueprint $table) {
+        Schema::table('students', function (Blueprint $table) {
             $table->dropColumn('line_id');
         });
     }
