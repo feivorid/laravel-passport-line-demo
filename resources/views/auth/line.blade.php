@@ -10,6 +10,7 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
+				{{$type}}
 				@if ($type == 'new')
 					<div class="panel-heading">新用户请选择用户类型</div>
 					<div class="panel-body">
@@ -63,4 +64,7 @@
 </div>
 </body>
 <script src="/js/app.js"></script>
+<script>
+	import Vue from 'vue';
+</script>
 </html>
