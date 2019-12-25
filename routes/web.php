@@ -20,3 +20,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('api/login/line', 'AuthController@line');
+Route::get('api/line/callback', 'AuthController@lineCallback');

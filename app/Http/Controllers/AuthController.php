@@ -170,6 +170,7 @@ class AuthController extends Controller
 
     public function lineCallback()
     {
+        info(111111);
         return Socialite::driver('line')->user();
     }
 }
