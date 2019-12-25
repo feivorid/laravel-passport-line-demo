@@ -19,5 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('api/login/line', 'AuthController@lineCallback');
-Route::post('api/line/callback', 'AuthController@lineCallba');
+Route::get('api/login/line', 'AuthController@lineCallback');
+Route::get('api/line/callback', 'AuthController@lineCallba');
