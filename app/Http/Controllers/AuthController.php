@@ -176,17 +176,17 @@ class AuthController extends Controller
 
             $line = Line::query()->where('line_id', $user->getId())->first();
 
-            if ($line) {
-                Student::query()->where('email', $line->email)->update([
-                    'line_id' => $line->line_id,
-                ]);
-
-                Teacher::query()->where('email', $line->email)->update([
-                    'line_id' => $line->line_id,
-                ]);
-
-                return redirect('/');
-            }
+//            if ($line) {
+            //                Student::query()->where('email', $line->email)->update([
+            //                    'line_id' => $line->line_id,
+            //                ]);
+            //
+            //                Teacher::query()->where('email', $line->email)->update([
+            //                    'line_id' => $line->line_id,
+            //                ]);
+            //
+            //                return redirect('/');
+            //            }
 
             info($line);
             if (!$line) {
