@@ -176,6 +176,7 @@ class AuthController extends Controller
 
             $line = Line::query()->where('line_id', $user->getId())->first();
 
+            info($line);
             if (!$line) {
                 $line = Line::query()->create([
                     'line_id' => $user->getId(),
