@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Line;
 use App\Models\Student;
 use App\Models\Teacher;
 use GuzzleHttp\Client;
@@ -171,7 +172,23 @@ class AuthController extends Controller
     public function lineCallback()
     {
         $user = Socialite::driver('line')->user();
-        dd($user);
 
+        $line = Line::query()->where('line_id', $user->getId());
+
+        $type = 'new';
+        if (!$line) {
+            $line = Line::query()->create([
+                'line_id' => $user->getId(),
+                'name'    => $user->getName(),
+                'email'   => $user->getEmail(),
+                'avatar'  => $user->getAvatar(),
+            ]);
+        } else {
+            $teacher = Teacher::query()->where('line_id', $user->getId())->first();
+            $students = Student::query()->where('line_id', $user->getId())->get();
+            $type = 'old';
+        }
+
+        return view('auth.line', compact('type', 'line', 'teacher', 'students'));
     }
 }
