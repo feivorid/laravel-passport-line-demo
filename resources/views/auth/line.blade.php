@@ -24,9 +24,7 @@
 								</div>
 								<div class="form-group">
 									<div class="col-md-6 col-md-offset-4">
-										<button type="submit" class="btn btn-primary">
-											登录
-										</button>
+										<button type="submit" class="btn btn-primary" @click="loginAsNewUser">登录</button>
 									</div>
 								</div>
 							</div>
@@ -40,7 +38,7 @@
 								<li class="list-group-item">姓名：{{$teacher->name}}</li>
 								<li class="list-group-item">类型：teacher</li>
 								<li class="list-group-item">
-									<button class="btn btn-primary" @click="login({{$teacher}}, 'teacher')">登录</button>
+									<button class="btn btn-primary" @click="loginAsOldUser({{$teacher->id}}, 'teacher')">登录</button>
 								</li>
 							</ul>
 						@endif
@@ -50,7 +48,7 @@
 									<li class="list-group-item">姓名：{{$student->name}}</li>
 									<li class="list-group-item">类型：student</li>
 									<li class="list-group-item">
-										<button class="btn btn-primary" @click="login({{$student}}, 'student')">登录</button>
+										<button class="btn btn-primary" @click="loginAsOldUser({{$student->id}}, 'student')">登录</button>
 									</li>
 								</ul>
 							@endforeach
@@ -64,18 +62,21 @@
 </body>
 <script src="/js/app.js"></script>
 <script>
-	$(document).ready(function() {
-		alert(1);
+	var vm = new Vue({
+		el: "#line",
+		data: {
+			type: 'teacher',
+
+		},
+		methods: {
+			loginAsOldUser(id, type) {
+				console.log(id, type);
+			},
+
+			loginAsNewUser() {
+				console.log(type);
+			}
+		}
 	});
-	// var vm = new Vue({
-	// 	el: "#line",
-	// 	data: {
-	// 		type: 'teacher',
-	//
-	// 	},
-	// 	methods: {
-	//
-	// 	}
-	// });
 </script>
 </html>

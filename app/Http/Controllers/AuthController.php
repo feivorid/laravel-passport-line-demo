@@ -176,7 +176,7 @@ class AuthController extends Controller
 
             $line = Line::query()->where('line_id', $user->getId())->first();
 
-//            if ($line) {
+            //            if ($line) {
             //                Student::query()->where('email', $line->email)->update([
             //                    'line_id' => $line->line_id,
             //                ]);
@@ -198,8 +198,8 @@ class AuthController extends Controller
                 ]);
                 $type = 'new';
             } else {
-                $teacher = Teacher::query()->where('line_id', $user->getId())->first();
-                $students = Student::query()->where('line_id', $user->getId())->get();
+                $teacher = Teacher::query()->where('line_id', $user->getId())->where('enabled', true)->first();
+                $students = Student::query()->where('line_id', $user->getId())->where('enabled', true)->get();
                 $type = 'old';
             }
 
