@@ -35,4 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'line' => [
+        'client_id' => env('LINE_KEY', 'Uefce566f84ed6c1a791fa4fd9dc32b66'),
+        'client_secret' => env('LINE_SECRET', '5323c1fa8679965cbd8d5f64a0fdce95'),
+        'redirect' => env('LINE_REDIRECT_URI', 'https://laravel-passport-demo.herokuapp.com/api/line/callback'),
+    ],
+
 ];

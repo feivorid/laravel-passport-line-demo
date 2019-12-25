@@ -40,6 +40,10 @@ export default {
 		})
 	},
 
+	loginAsLine: function (params) {
+		return Axios.post('/api/login/line', params);
+	},
+
 	teacher: function () {
 		return Axios.get('/api/teacher');
 	},
@@ -48,7 +52,7 @@ export default {
 		return Axios.get('/api/student');
 	},
 
-	follow: function(params) {
+	follow: function (params) {
 		return Axios.post('/api/follow', params);
 	}
 

@@ -183,6 +183,8 @@ return [
         App\Providers\StudentServiceProvider::class,
         App\Providers\TeacherServiceProvider::class,
 
+        \SocialiteProviders\Manager\ServiceProvider::class, //line
+
     ],
 
     /*

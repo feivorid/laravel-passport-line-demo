@@ -18,3 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('api/login/line', 'AuthController@lineCallback');
+Route::post('api/line/callback', 'AuthController@lineCallba');

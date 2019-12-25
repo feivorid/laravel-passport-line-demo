@@ -6,8 +6,8 @@ use App\Models\Student;
 use App\Models\Teacher;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -161,5 +161,15 @@ class AuthController extends Controller
             'code'    => 200,
             'message' => '注册成功',
         ]);
+    }
+
+    public function line()
+    {
+        return Socialite::with('line')->redirect();
+    }
+
+    public function lineCallback()
+    {
+        return Socialite::driver('line')->user();
     }
 }

@@ -658,6 +658,10 @@ var Axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 		});
 	},
 
+	loginAsLine: function loginAsLine(params) {
+		return Axios.post('/api/login/line', params);
+	},
+
 	teacher: function teacher() {
 		return Axios.get('/api/teacher');
 	},
@@ -49299,7 +49303,7 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49344,6 +49348,7 @@ module.exports = function listToStyles (parentId, list) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api__ = __webpack_require__(4);
+//
 //
 //
 //
@@ -49445,6 +49450,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					alert('授权失败');
 				}
 			});
+		},
+		loginAsLine: function loginAsLine() {
+			__WEBPACK_IMPORTED_MODULE_0__api__["a" /* default */].loginAsLine({});
 		}
 	}
 });
@@ -49625,6 +49633,15 @@ var render = function() {
                         attrs: { to: "/register" }
                       },
                       [_vm._v("去注册")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        on: { click: _vm.loginAsLine }
+                      },
+                      [_vm._v("LINE登录")]
                     )
                   ],
                   1

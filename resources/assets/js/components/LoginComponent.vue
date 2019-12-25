@@ -35,6 +35,7 @@
 									<button type="submit" class="btn btn-primary" @click="login">登录</button>
 									<!--									<button type="button" class="btn btn-primary pull-right">LINE登录</button>-->
 									<router-link class="btn btn-primary pull-right" to="/register">去注册</router-link>
+									<button class="btn btn-success" @click="loginAsLine">LINE登录</button>
 								</div>
 							</div>
 						</div>
@@ -88,7 +89,7 @@
 						localStorage.setItem('refresh_token', result.data.refresh_token);
 						localStorage.setItem('user_type', this.type);
 						console.log(localStorage.getItem('token'));
-						window.location.href= '/';
+						window.location.href = '/';
 						// this.$router.push('/');
 					}
 				}).catch((error) => {
@@ -96,6 +97,9 @@
 						alert('授权失败');
 					}
 				});
+			},
+			loginAsLine() {
+				Api.loginAsLine({});
 			}
 		}
 	}
