@@ -171,28 +171,29 @@ class AuthController extends Controller
 
     public function lineCallback()
     {
-        if (!Socialite::driver('line')) {
+        try {
+            $user = Socialite::driver('line')->user();
+
+            $line = Line::query()->where('line_id', $user->getId())->first();
+
+            if (!$line) {
+                $line = Line::query()->create([
+                    'line_id' => $user->getId(),
+                    'name'    => $user->getName(),
+                    'email'   => $user->getEmail(),
+                    'avatar'  => $user->getAvatar(),
+                ]);
+                $type = 'new';
+            } else {
+                $teacher = Teacher::query()->where('line_id', $user->getId())->first();
+                $students = Student::query()->where('line_id', $user->getId())->get();
+                $type = 'old';
+            }
+
+            return view('auth.line', compact('type', 'line', 'teacher', 'students'));
+        } catch (\Exception $e) {
+            info($e);
             return redirect('/');
         }
-        
-        $user = Socialite::driver('line')->user();
-
-        $line = Line::query()->where('line_id', $user->getId());
-
-        if (!$line) {
-            $line = Line::query()->create([
-                'line_id' => $user->getId(),
-                'name'    => $user->getName(),
-                'email'   => $user->getEmail(),
-                'avatar'  => $user->getAvatar(),
-            ]);
-            $type = 'new';
-        } else {
-            $teacher = Teacher::query()->where('line_id', $user->getId())->first();
-            $students = Student::query()->where('line_id', $user->getId())->get();
-            $type = 'old';
-        }
-
-        return view('auth.line', compact('type', 'line', 'teacher', 'students'));
     }
 }
