@@ -71,6 +71,19 @@
 		methods: {
 			loginAsOldUser(id, type) {
 				console.log(id, type);
+				axios.post('https://laravel-passport-demo.herokuapp.com/api/login/line/old', {
+					id: id,
+					type: type,
+				}).then((result) => {
+					if (result.status === 200) {
+						localStorage.setItem('token', result.data.access_token);
+						localStorage.setItem('refresh_token', result.data.refresh_token);
+						localStorage.setItem('user_type', type);
+						window.location.href = '/';
+					}
+				}).catch((error) => {
+					console.log(error.response);
+				});
 			},
 
 			loginAsNewUser() {

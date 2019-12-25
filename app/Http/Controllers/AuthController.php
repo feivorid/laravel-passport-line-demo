@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Line;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Traits\PassportToken;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -12,6 +13,8 @@ use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
+
+    use PassportToken;
 
     /**
      * 登录
@@ -213,5 +216,26 @@ class AuthController extends Controller
             info($e);
             return redirect('/');
         }
+    }
+
+    public function lineOld(Request $request)
+    {
+        $id = $request->get('id');
+        $type = $request->get('type');
+
+        if ($type === 'teacher') {
+            $teacher = Teacher::query()->find($id);
+            $result = $this->getBearerTokenByUser($teacher, 2, false);
+        } else {
+            $student = Student::query()->find($id);
+            $result = $this->getBearerTokenByUser($student, 2, false);
+        }
+
+        return $result;
+    }
+
+    public function lineNew()
+    {
+        
     }
 }
