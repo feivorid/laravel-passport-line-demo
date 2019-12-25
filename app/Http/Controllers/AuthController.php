@@ -165,6 +165,7 @@ class AuthController extends Controller
 
     public function line()
     {
+        info(123131231212);
         return Socialite::with('line')->redirect();
     }
 
