@@ -190,7 +190,12 @@ class AuthController extends Controller
                 $type = 'old';
             }
 
-            return view('auth.line', compact('type', 'line', 'teacher', 'students'));
+            return view('auth.line', [
+                'type'     => $type,
+                'line'     => $line ?? null,
+                'teacher'  => $teacher ?? null,
+                'students' => $students ?? null,
+            ]);
         } catch (\Exception $e) {
             info($e);
             return redirect('/');
