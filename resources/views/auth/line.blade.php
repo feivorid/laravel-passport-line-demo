@@ -7,10 +7,9 @@
 </head>
 <body>
 <div class="container">
-	<div class="row">
+	<div class="row" id="line">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
-				{{$type}}
 				@if ($type == 'new')
 					<div class="panel-heading">新用户请选择用户类型</div>
 					<div class="panel-body">
@@ -18,7 +17,7 @@
 							<div class="form-group">
 								<label for="name" class="col-md-4 control-label">类型</label>
 								<div class="col-md-6">
-									<select class="form-control">
+									<select v-model="@{{ type }}" class="form-control">
 										<option value="teacher">老师</option>
 										<option value="student">学生</option>
 									</select>
@@ -37,21 +36,21 @@
 					<div class="panel-heading">系统检测到该LINE账号有以下关联账户</div>
 					<div class="panel-body">
 						@if($teacher)
-							<ul class="list-group">
+							<ul class="list-group col-md-6">
 								<li class="list-group-item">姓名：{{$teacher->name}}</li>
-								<li class="list-group-item">类型：老师</li>
+								<li class="list-group-item">类型：teacher</li>
 								<li class="list-group-item">
-									<button class="btn btn-primary">登录</button>
+									<button class="btn btn-primary" @click="login({{$teacher}}, 'teacher')">登录</button>
 								</li>
 							</ul>
 						@endif
 						@if ($students)
 							@foreach ($students as $student)
-								<ul class="list-group">
+								<ul class="list-group col-md-6">
 									<li class="list-group-item">姓名：{{$student->name}}</li>
-									<li class="list-group-item">类型：学生</li>
+									<li class="list-group-item">类型：student</li>
 									<li class="list-group-item">
-										<button class="btn btn-primary">登录</button>
+										<button class="btn btn-primary" @click="login({{$student}}, 'student')">登录</button>
 									</li>
 								</ul>
 							@endforeach
@@ -65,6 +64,18 @@
 </body>
 <script src="/js/app.js"></script>
 <script>
-	import Vue from 'vue';
+	$(document).ready(function() {
+		alert(1);
+	});
+	// var vm = new Vue({
+	// 	el: "#line",
+	// 	data: {
+	// 		type: 'teacher',
+	//
+	// 	},
+	// 	methods: {
+	//
+	// 	}
+	// });
 </script>
 </html>
