@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="container">
-	<div class="row" id="line">
+	<div class="row" id="app">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				@if ($type == 'new')
@@ -63,7 +63,7 @@
 <script src="/js/app.js"></script>
 <script>
 	var vm = new Vue({
-		el: "#line",
+		el: "#app",
 		data: {
 			type: 'teacher',
 
