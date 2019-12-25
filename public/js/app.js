@@ -658,8 +658,8 @@ var Axios = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 		});
 	},
 
-	loginAsLine: function loginAsLine(params) {
-		return Axios.post('/api/login/line', params);
+	loginAsLine: function loginAsLine() {
+		return Axios.get('/api/login/line');
 	},
 
 	teacher: function teacher() {
@@ -49452,7 +49452,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			});
 		},
 		loginAsLine: function loginAsLine() {
-			__WEBPACK_IMPORTED_MODULE_0__api__["a" /* default */].loginAsLine({});
+			__WEBPACK_IMPORTED_MODULE_0__api__["a" /* default */].loginAsLine();
 		}
 	}
 });

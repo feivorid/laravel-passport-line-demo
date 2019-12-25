@@ -40,8 +40,8 @@ export default {
 		})
 	},
 
-	loginAsLine: function (params) {
-		return Axios.post('/api/login/line', params);
+	loginAsLine: function () {
+		return Axios.get('/api/login/line');
 	},
 
 	teacher: function () {

@@ -99,7 +99,7 @@
 				});
 			},
 			loginAsLine() {
-				Api.loginAsLine({});
+				Api.loginAsLine();
 			}
 		}
 	}
