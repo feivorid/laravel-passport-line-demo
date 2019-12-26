@@ -211,6 +211,8 @@ class AuthController extends Controller
                 }
             }
 
+            info($type);
+            info($line);
             return view('auth.line', [
                 'type'     => $type,
                 'line'     => $line ?? null,

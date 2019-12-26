@@ -12,6 +12,7 @@
 			<div class="panel panel-default">
 				<input type="hidden" value="{{$line->line_id}}" v-model="line_id">
 
+				{{$type}}
 				@if ($type == 'new')
 					<div class="panel-heading">新用户请选择用户类型</div>
 					<div class="panel-body">
