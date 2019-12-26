@@ -10,13 +10,12 @@
 	<div class="row" id="line">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
-				{{$type}}
 				@if ($type == 'new')
 					<div class="panel-heading">新用户请选择用户类型</div>
 					<div class="panel-body">
 						<div class="form-horizontal">
 							<div class="form-group">
-								<label for="name" class="col-md-4 control-label">类型</label>
+								<label for="name" class="col-md-4 control-label">类型{{$line->line_id}}</label>
 								<div class="col-md-6">
 									<select v-model="type" class="form-control">
 										<option value="teacher">老师</option>

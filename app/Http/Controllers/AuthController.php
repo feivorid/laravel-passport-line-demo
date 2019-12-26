@@ -245,7 +245,6 @@ class AuthController extends Controller
         $type = $request->get('type');
         $lineId = $request->get('lineId');
 
-        info($type);
         info($lineId);
         $line = Line::query()->where('line_id', $lineId)->first();
 
