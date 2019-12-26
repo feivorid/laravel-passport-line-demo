@@ -15,7 +15,7 @@
 					<div class="panel-body">
 						<div class="form-horizontal">
 							<div class="form-group">
-								<label for="name" class="col-md-4 control-label">类型{{$line->line_id}}</label>
+								<label for="name" class="col-md-4 control-label">类型</label>
 								<div class="col-md-6">
 									<select v-model="type" class="form-control">
 										<option value="teacher">老师</option>
@@ -24,7 +24,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<div class="col-md-6">
+								<div class="col-md-8 col-md-offset-4">
 									<button type="submit" class="btn btn-primary" @click="loginAsNewUser({{$line->line_id}})">登录</button>
 								</div>
 							</div>
@@ -70,7 +70,6 @@
 		},
 		methods: {
 			loginAsOldUser(id, type) {
-				console.log(id, type);
 				axios.post('https://laravel-passport-demo.herokuapp.com/api/login/line/old', {
 					id: id,
 					type: type,
@@ -87,6 +86,7 @@
 			},
 
 			loginAsNewUser(lineId) {
+				console.log(lineId);
 				axios.post('https://laravel-passport-demo.herokuapp.com/api/login/line/new', {
 					type: this.type,
 					line_id: lineId,
