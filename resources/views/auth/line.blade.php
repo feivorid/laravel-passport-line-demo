@@ -7,9 +7,11 @@
 </head>
 <body>
 <div class="container">
-	<div class="row" id="app">
+	<div class="row" id="line">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
+				<input type="hidden" value="{{$line->line_id}}" v-model="line_id">
+
 				@if ($type == 'new')
 					<div class="panel-heading">新用户请选择用户类型</div>
 					<div class="panel-body">
@@ -63,10 +65,10 @@
 <script src="/js/app.js"></script>
 <script>
 	var vm = new Vue({
-		el: "#app",
+		el: "#line",
 		data: {
 			type: 'teacher',
-
+			line_id: '',
 		},
 		methods: {
 			loginAsOldUser(id, type) {
@@ -87,7 +89,19 @@
 			},
 
 			loginAsNewUser() {
-				console.log(type);
+				axios.post('https://laravel-passport-demo.herokuapp.com/api/login/line/new', {
+					type: this.type,
+					line_id: this.line_id,
+				}).then((result) => {
+					if (result.status === 200) {
+						localStorage.setItem('token', result.data.access_token);
+						localStorage.setItem('refresh_token', result.data.refresh_token);
+						localStorage.setItem('user_type', type);
+						window.location.href = '/';
+					}
+				}).catch((error) => {
+					console.log(error.response);
+				});
 			}
 		}
 	});

@@ -224,18 +224,33 @@ class AuthController extends Controller
         $type = $request->get('type');
 
         if ($type === 'teacher') {
-            $teacher = Teacher::query()->find($id);
-            $result = $this->getBearerTokenByUser($teacher, 2, false);
+            $user = Teacher::query()->find($id);
         } else {
-            $student = Student::query()->find($id);
-            $result = $this->getBearerTokenByUser($student, 2, false);
+            $user = Student::query()->find($id);
         }
 
-        return $result;
+        return $this->getBearerTokenByUser($user, 2, false);
     }
 
-    public function lineNew()
+    public function lineNew(Request $request)
     {
-        
+        $type = $request->get('type');
+        $lineId = $request->get('lineId');
+
+        $line = Line::query()->where('line_id', $lineId)->first();
+
+        if ($type == 'teacher') {
+            $user = Teacher::query()->create([
+                'name'  => $line->name,
+                'email' => $line->email,
+            ]);
+        } else {
+            $user = Student::query()->create([
+                'name'  => $line->name,
+                'email' => $line->email,
+            ]);
+        }
+
+        return $this->getBearerTokenByUser($user, 2, false);
     }
 }
