@@ -19,7 +19,7 @@
 							<div class="form-group">
 								<label for="name" class="col-md-4 control-label">类型</label>
 								<div class="col-md-6">
-									<select v-model="@{{ type }}" class="form-control">
+									<select v-model="type" class="form-control">
 										<option value="teacher">老师</option>
 										<option value="student">学生</option>
 									</select>

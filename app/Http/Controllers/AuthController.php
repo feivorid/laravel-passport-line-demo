@@ -203,7 +203,12 @@ class AuthController extends Controller
             } else {
                 $teacher = Teacher::query()->where('line_id', $user->getId())->where('enabled', true)->first();
                 $students = Student::query()->where('line_id', $user->getId())->where('enabled', true)->get();
-                $type = 'old';
+
+                if ($teacher || $students) {
+                    $type = 'old';
+                } else {
+                    $type = 'new';
+                }
             }
 
             return view('auth.line', [
@@ -237,6 +242,8 @@ class AuthController extends Controller
         $type = $request->get('type');
         $lineId = $request->get('lineId');
 
+        info($type);
+        info($lineId);
         $line = Line::query()->where('line_id', $lineId)->first();
 
         if ($type == 'teacher') {
