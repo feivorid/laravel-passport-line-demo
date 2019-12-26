@@ -50,9 +50,8 @@ class StudentController extends AdminController
                         return $item->only(['id', 'name', 'email', 'created_at']);
                     }
                 });
-
-                return new Table(['ID', '姓名', '邮箱', '注册时间'], $teachers->toArray());
             }
+            return new Table(['ID', '姓名', '邮箱', '注册时间'], $teachers->toArray());
         });
         $grid->column('created_at', __('创建时间'));
         $grid->column('updated_at', __('更新时间'));
