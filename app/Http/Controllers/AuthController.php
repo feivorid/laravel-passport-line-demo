@@ -245,12 +245,14 @@ class AuthController extends Controller
                 'name'     => $line->name,
                 'email'    => $line->email,
                 'password' => bcrypt($line->line_id),
+                'line_id'  => $line->line_id,
             ]);
         } else {
             $user = Student::query()->create([
                 'name'     => $line->name,
                 'email'    => $line->email,
                 'password' => bcrypt($line->line_id),
+                'line_id'  => $line->line_id,
             ]);
         }
 
