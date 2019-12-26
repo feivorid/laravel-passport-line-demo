@@ -10,8 +10,6 @@
 	<div class="row" id="line">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
-				<input type="hidden" value="{{$line->line_id}}" v-model="line_id">
-
 				{{$type}}
 				@if ($type == 'new')
 					<div class="panel-heading">新用户请选择用户类型</div>
@@ -24,9 +22,10 @@
 										<option value="teacher">老师</option>
 										<option value="student">学生</option>
 									</select>
+									<input type="hidden" value="{{$line->line_id}}" v-model="line_id">
 								</div>
 								<div class="form-group">
-									<div class="col-md-6 col-md-offset-4">
+									<div class="col-md-6">
 										<button type="submit" class="btn btn-primary" @click="loginAsNewUser">登录</button>
 									</div>
 								</div>

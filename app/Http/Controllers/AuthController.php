@@ -211,6 +211,7 @@ class AuthController extends Controller
                 }
             }
 
+            info(111111);
             info($type);
             info($line);
             return view('auth.line', [
@@ -247,6 +248,10 @@ class AuthController extends Controller
         info($type);
         info($lineId);
         $line = Line::query()->where('line_id', $lineId)->first();
+
+        if (!$line) {
+            return '未获取到line用户信息';
+        }
 
         if ($type == 'teacher') {
             $user = Teacher::query()->create([
