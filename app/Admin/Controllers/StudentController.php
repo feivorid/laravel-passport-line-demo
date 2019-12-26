@@ -46,7 +46,9 @@ class StudentController extends AdminController
                     $teachers->push($item->teacher);
                 });
                 $teachers = $teachers->map(function ($item) {
-                    return $item->only(['id', 'name', 'email', 'created_at']);
+                    if ($item) {
+                        return $item->only(['id', 'name', 'email', 'created_at']);
+                    }
                 });
 
                 return new Table(['ID', '姓名', '邮箱', '注册时间'], $teachers->toArray());
