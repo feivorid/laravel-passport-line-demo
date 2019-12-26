@@ -46,12 +46,12 @@ class StudentController extends AdminController
                     $teachers->push($item->teacher);
                 });
                 $teachers = $teachers->map(function ($item, $key) use ($teachers) {
-                    if ($item) {
+                    if (!$item) {
+                        unset($teachers[$key]);
+                    } else {
                         return $item->only(['id', 'name', 'email', 'created_at']);
                     }
-                    unset($teachers[$key]);
                 });
-                dd($teachers);
 
                 return new Table(['ID', '姓名', '邮箱', '注册时间'], $teachers->toArray());
             }
