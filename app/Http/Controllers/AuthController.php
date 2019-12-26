@@ -242,13 +242,15 @@ class AuthController extends Controller
 
         if ($type == 'teacher') {
             $user = Teacher::query()->create([
-                'name'  => $line->name,
-                'email' => $line->email,
+                'name'     => $line->name,
+                'email'    => $line->email,
+                'password' => bcrypt($line->line_id),
             ]);
         } else {
             $user = Student::query()->create([
-                'name'  => $line->name,
-                'email' => $line->email,
+                'name'     => $line->name,
+                'email'    => $line->email,
+                'password' => bcrypt($line->line_id),
             ]);
         }
 
