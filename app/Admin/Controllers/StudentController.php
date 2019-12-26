@@ -53,6 +53,8 @@ class StudentController extends AdminController
                     }
                 });
 
+                dd($teachers);
+
                 return new Table(['ID', '姓名', '邮箱', '注册时间'], $teachers->toArray());
             }
         });
