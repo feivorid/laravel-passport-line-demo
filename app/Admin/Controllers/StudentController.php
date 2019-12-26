@@ -45,7 +45,7 @@ class StudentController extends AdminController
                 $follows->each(function ($item) use (&$teachers) {
                     $teachers->push($item->teacher);
                 });
-                dd($follows);
+                dd($teachers);
                 $teachers = $teachers->map(function ($item) {
                     if ($item) {
                         return $item->only(['id', 'name', 'email', 'created_at']);
