@@ -39,15 +39,18 @@ class StudentController extends AdminController
         $grid->column('intro', __('简介'));
         $grid->column('teachers', '关注的老师')->modal(function ($model) {
             $follows = $model->follows()->with(['teacher'])->where('status', 1)->get();
-            $teachers = collect();
-            $follows->each(function ($item) use (&$teachers) {
-                $teachers->push($item->teacher);
-            });
-            $teachers = $teachers->map(function ($item) {
-                return $item->only(['id', 'name', 'email', 'created_at']);
-            });
 
-            return new Table(['ID', '姓名', '邮箱', '注册时间'], $teachers->toArray());
+            if ($follows->count() > 0) {
+                $teachers = collect();
+                $follows->each(function ($item) use (&$teachers) {
+                    $teachers->push($item->teacher);
+                });
+                $teachers = $teachers->map(function ($item) {
+                    return $item->only(['id', 'name', 'email', 'created_at']);
+                });
+
+                return new Table(['ID', '姓名', '邮箱', '注册时间'], $teachers->toArray());
+            }
         });
         $grid->column('created_at', __('创建时间'));
         $grid->column('updated_at', __('更新时间'));
