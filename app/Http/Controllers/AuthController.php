@@ -245,11 +245,12 @@ class AuthController extends Controller
         $type = $request->get('type');
         $lineId = $request->get('lineId');
 
-        info($lineId);
         $line = Line::query()->where('line_id', $lineId)->first();
 
         if (!$line) {
-            return '未获取到line用户信息';
+            return response()->json([
+                'message' => '未获取到line用户信息',
+            ], 400);
         }
 
         if ($type == 'teacher') {

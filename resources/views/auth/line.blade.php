@@ -25,7 +25,7 @@
 							</div>
 							<div class="form-group">
 								<div class="col-md-8 col-md-offset-4">
-									<button type="submit" class="btn btn-primary" @click="loginAsNewUser({{$line->line_id}})">登录</button>
+									<button class="btn btn-primary" @click="loginAsNewUser({{$line->line_id}}, 'teacher')">登录</button>
 								</div>
 							</div>
 						</div>
@@ -85,8 +85,10 @@
 				});
 			},
 
-			loginAsNewUser(lineId) {
+			loginAsNewUser(lineId, teacher) {
 				console.log(lineId);
+				console.log(teacher);
+				
 				axios.post('https://laravel-passport-demo.herokuapp.com/api/login/line/new', {
 					type: this.type,
 					line_id: lineId,
