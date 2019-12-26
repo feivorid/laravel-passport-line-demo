@@ -230,7 +230,7 @@ class AuthController extends Controller
     public function lineNew(Request $request)
     {
         $type = $request->get('type');
-        $lineId = $request->get('lineId');
+        $lineId = $request->get('line_id');
 
         $line = Line::query()->where('line_id', $lineId)->first();
 

@@ -100,8 +100,8 @@
 						window.location.href = '/';
 					}
 				}).catch((error) => {
-					if (error.status === 400) {
-						alert(error.data.message);
+					if (error.response.status === 400) {
+						alert(error.response.data.message);
 					}
 				});
 			}
