@@ -21,12 +21,11 @@
 										<option value="teacher">老师</option>
 										<option value="student">学生</option>
 									</select>
-									<input type="hidden" value="{{$line->line_id}}" v-model="line_id">
 								</div>
-								<div class="form-group">
-									<div class="col-md-6">
-										<button type="submit" class="btn btn-primary" @click="loginAsNewUser">登录</button>
-									</div>
+							</div>
+							<div class="form-group">
+								<div class="col-md-6">
+									<button type="submit" class="btn btn-primary" @click="loginAsNewUser({{$line->line_id}})">登录</button>
 								</div>
 							</div>
 						</div>
@@ -87,10 +86,10 @@
 				});
 			},
 
-			loginAsNewUser() {
+			loginAsNewUser(lineId) {
 				axios.post('https://laravel-passport-demo.herokuapp.com/api/login/line/new', {
 					type: this.type,
-					line_id: this.line_id,
+					line_id: lineId,
 				}).then((result) => {
 					if (result.status === 200) {
 						localStorage.setItem('token', result.data.access_token);
