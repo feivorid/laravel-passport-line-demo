@@ -241,19 +241,25 @@ class AuthController extends Controller
         }
 
         if ($type == 'teacher') {
-            $user = Teacher::query()->create([
+            $data = [
                 'name'     => $line->name,
-                'email'    => $line->email,
                 'password' => bcrypt($line->line_id),
                 'line_id'  => $line->line_id,
-            ]);
+            ];
+            if (!Teacher::query()->where('email', $line->email)->where('enabled', true)->exit()) {
+                $data['email'] = $line->email;
+            }
+            $user = Teacher::query()->create($data);
         } else {
-            $user = Student::query()->create([
+            $data = [
                 'name'     => $line->name,
-                'email'    => $line->email,
                 'password' => bcrypt($line->line_id),
                 'line_id'  => $line->line_id,
-            ]);
+            ];
+            if (!Student::query()->where('email', $line->email)->where('enabled', true)->exists()) {
+                $data['email'] = $line->email;
+            }
+            $user = Student::query()->create($data);
         }
 
         return $this->getBearerTokenByUser($user, 2, false);
