@@ -204,6 +204,7 @@ class AuthController extends Controller
                 $teacher = Teacher::query()->where('line_id', $user->getId())->where('enabled', true)->first();
                 $students = Student::query()->where('line_id', $user->getId())->where('enabled', true)->get();
 
+                dd($teacher, $students);
                 if ($teacher || $students) {
                     $type = 'old';
                 } else {
