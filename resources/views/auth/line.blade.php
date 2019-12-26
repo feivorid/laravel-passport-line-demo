@@ -25,7 +25,7 @@
 							</div>
 							<div class="form-group">
 								<div class="col-md-8 col-md-offset-4">
-									<button class="btn btn-primary" @click="loginAsNewUser({{$line->line_id}}, 'teacher')">登录</button>
+									<button class="btn btn-primary" @click="loginAsNewUser()">登录</button>
 								</div>
 							</div>
 						</div>
@@ -66,7 +66,7 @@
 		el: "#line",
 		data: {
 			type: 'teacher',
-			line_id: '',
+			line_id: '{{$line->line_id}}',
 		},
 		methods: {
 			loginAsOldUser(id, type) {
@@ -85,22 +85,24 @@
 				});
 			},
 
-			loginAsNewUser(lineId, teacher) {
-				console.log(lineId);
-				console.log(teacher);
-				
+			loginAsNewUser() {
+				console.log(this.line_id);
+				console.log(this.type);
+
 				axios.post('https://laravel-passport-demo.herokuapp.com/api/login/line/new', {
 					type: this.type,
-					line_id: lineId,
+					line_id: this.line_id,
 				}).then((result) => {
 					if (result.status === 200) {
 						localStorage.setItem('token', result.data.access_token);
 						localStorage.setItem('refresh_token', result.data.refresh_token);
-						localStorage.setItem('user_type', type);
+						localStorage.setItem('user_type', this.type);
 						window.location.href = '/';
 					}
 				}).catch((error) => {
-					console.log(error.response);
+					if (error.status === 400) {
+						alert(error.data.message);
+					}
 				});
 			}
 		}
